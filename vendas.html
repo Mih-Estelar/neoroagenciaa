@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>NEORO Agência - Produtos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0b0f2f;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      color: #ffdd57;
+      font-size: 42px;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px #fff, 0 0 20px #ff0000;
+      animation: brilhoTitulo 2s infinite alternate;
+    }
+
+    @keyframes brilhoTitulo {
+      0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff0000, 0 0 40px #ff0000; }
+      50% { text-shadow: 0 0 20px #fff, 0 0 40px #ff4d4d, 0 0 80px #ff0000; }
+      100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff0000, 0 0 40px #ff0000; }
+    }
+
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .product-card {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid #ffdd57;
+      border-radius: 16px;
+      padding: 20px;
+      width: 250px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #ffdd57, 0 0 40px #ff4d4d;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      color: #ffdd57;
+      margin: 10px 0;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .btn-add {
+      padding: 10px 20px;
+      background: #ffdd57;
+      color: black;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-add:hover {
+      background: #ffc42b;
+      transform: scale(1.05);
+    }
+
+    .cart {
+      margin-top: 50px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      border: 2px solid #ffdd57;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .cart h2 {
+      color: #ffdd57;
+      margin-bottom: 20px;
+    }
+
+    .cart ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+    }
+
+    .cart ul li {
+      margin-bottom: 10px;
+    }
+
+    .btn-whatsapp {
+      padding: 12px 30px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Produtos NEORO</h1>
+
+  <div class="products-container">
+    <!-- Produto 1 -->
+    <div class="product-card">
+      <img src="adesivo.jpg" alt="Adesivo">
+      <h3>Adesivo</h3>
+      <p>Preço: R$5,00</p>
+      <button class="btn-add" data-name="Adesivo" data-price="5">Adicionar ao carrinho</button>
+    </div>
+
+    <!-- Produto 2 -->
+    <div class="product-card">
+      <img src="camisa.jpg" alt="Camisa">
+      <h3>Camisa</h3>
+      <p>Preço: R$50,00</p>
+      <button class="btn-add" data-name="Camisa" data-price="50">Adicionar ao carrinho</button>
+    </div>
+
+    <!-- Produto 3 -->
+    <div class="product-card">
+      <img src="caneca.jpg" alt="Caneca">
+      <h3>Caneca</h3>
+      <p>Preço: R$25,00</p>
+      <button class="btn-add" data-name="Caneca" data-price="25">Adicionar ao carrinho</button>
+    </div>
+
+    <!-- Produto 4 -->
+    <div class="product-card">
+      <img src="poster.jpg" alt="Poster">
+      <h3>Poster</h3>
+      <p>Preço: R$15,00</p>
+      <button class="btn-add" data-name="Poster" data-price="15">Adicionar ao carrinho</button>
+    </div>
+
+    <!-- Produto 5 -->
+    <div class="product-card">
+      <img src="pacote_surpresa.jpg" alt="Pacote Surpresa">
+      <h3>Pacote Surpresa</h3>
+      <p>Preço: R$30,00</p>
+      <button class="btn-add" data-name="Pacote Surpresa" data-price="30">Adicionar ao carrinho</button>
+    </div>
+  </div>
+
+  <div class="cart">
+    <h2>Carrinho</h2>
+    <ul id="cart-items">
+      <li>Nenhum produto adicionado</li>
+    </ul>
+    <p><strong>Total: R$ <span id="cart-total">0,00</span></strong></p>
+    <a id="whatsapp-btn" class="btn-whatsapp" href="#" target="_blank">Enviar pelo WhatsApp</a>
+  </div>
+
+  <script>
+    const addButtons = document.querySelectorAll('.btn-add');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const whatsappBtn = document.getElementById('whatsapp-btn');
+
+    let cart = [];
+
+    function updateCart() {
+      cartItems.innerHTML = '';
+      let total = 0;
+      if(cart.length === 0){
+        cartItems.innerHTML = '<li>Nenhum produto adicionado</li>';
+      } else {
+        cart.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = `${item.name} - R$${item.price.toFixed(2)}`;
+          cartItems.appendChild(li);
+          total += item.price;
+        });
+      }
+      cartTotal.textContent = total.toFixed(2);
+
+      // Link do WhatsApp com mensagem codificada
+      const numero = '5543996637473';
+      let mensagem = 'Olá! Gostaria de comprar os seguintes produtos:\n';
+      cart.forEach(item => {
+        mensagem += `- ${item.name} - R$${item.price.toFixed(2)}\n`;
+      });
+      mensagem += `Total: R$${total.toFixed(2)}`;
+      whatsappBtn.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    }
+
+    addButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const name = button.getAttribute('data-name');
+        const price = parseFloat(button.getAttribute('data-price'));
+        cart.push({name, price});
+        updateCart();
+      });
+    });
+  </script>
+</body>
+</html>

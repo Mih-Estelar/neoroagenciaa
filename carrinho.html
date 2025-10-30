@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho</title>
+</head>
+<body>
+  <h1>Seu Carrinho</h1>
+
+  <ul id="carrinhoLista"></ul>
+
+  <button id="enviarWhatsApp">Enviar pelo WhatsApp</button>
+
+  <script>
+    // Pega os produtos do localStorage
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const lista = document.getElementById('carrinhoLista');
+
+    // Exibe os produtos na tela
+    carrinho.forEach(produto => {
+      const li = document.createElement('li');
+      li.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
+      lista.appendChild(li);
+    });
+
+    // Enviar WhatsApp
+    document.getElementById('enviarWhatsApp').addEventListener('click', () => {
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+
+      let mensagem = 'Olá! Gostaria de comprar os seguintes produtos:%0A';
+      carrinho.forEach(produto => {
+        mensagem += `- ${produto.nome} - R$ ${produto.preco.toFixed(2)}%0A`;
+      });
+
+      const numeroWhatsApp = '5511999999999';
+      window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, '_blank');
+    });
+  </script>
+</body>
+</html>
