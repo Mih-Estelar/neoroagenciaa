@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>NEORO Agência - Produtos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0b0f2f;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      background-color: #0b0f2f;
+      padding: 20px 0;
+      border-bottom: 2px solid #ffdd57;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #ffdd57;
+    }
+
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 50px 20px;
+      gap: 30px;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #ffdd57;
+      border-radius: 16px;
+      padding: 20px;
+      width: 250px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #ffdd57;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0;
+      color: #ffdd57;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .product-card .price {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 5px;
+      color: #ffdd57;
+    }
+
+    .product-card button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #ffdd57;
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .product-card button:hover {
+      background: #ffc42b;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ffdd57;
+    }
+
+    .surpresa {
+      border: 2px dashed #ff4d4d;
+      background: rgba(255, 0, 0, 0.1);
+    }
+
+    footer {
+      margin-top: 50px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a.back-home {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: #ffdd57;
+      color: black;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    a.back-home:hover {
+      background: #ffc42b;
+      transform: scale(1.05);
+    }
+
+    .division-info {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #ffdd57;
+    }
+
+    /* Emoji do carrinho */
+    .cart-emoji {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 36px;
+      text-decoration: none;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    /* Modal do carrinho */
+    #cart-modal {
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 320px;
+      max-height: 450px;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.95);
+      border: 2px solid #ffdd57;
+      border-radius: 12px;
+      padding: 20px;
+      z-index: 1000;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+
+    .remove-btn {
+      background: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .remove-btn:hover {
+      background: #ff1a1a;
+    }
+
+    /* Botão WhatsApp dentro do modal */
+    #send-whatsapp {
+      display: block;
+      margin: 15px auto 0;
+      padding: 10px 20px;
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #send-whatsapp:hover {
+      background: #1ebe5d;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Emoji de carrinho -->
+  <span class="cart-emoji">🛒</span>
+
+  <header>
+    <h1>Produtos NEORO</h1>
+  </header>
+
+  <div class="products-container">
+    <!-- Adesivos -->
+    <div class="product-card">
+      <img src="Adesivos.jpg" alt="Adesivos">
+      <h3>Adesivos</h3>
+      <p>Adesivos digitais e físicos com as Vtubers da NEORO.</p>
+      <div class="price">20.00</div>
+      <button>Comprar</button>
+    </div>
+    <!-- Camisas -->
+    <div class="product-card">
+      <img src="camisa.jpg" alt="Camisas">
+      <h3>Camisas</h3>
+      <p>Camisetas com design exclusivo das nossas Vtubers.</p>
+      <div class="price">70.00</div>
+      <button>Comprar</button>
+    </div>
+    <!-- Canecas -->
+    <div class="product-card">
+      <img src="caneca.jpg" alt="Canecas">
+      <h3>Canecas</h3>
+      <p>Canecas oficiais da NEORO com artes das Vtubers.</p>
+      <div class="price">40.00</div>
+      <button>Comprar</button>
+    </div>
+    <!-- Posters -->
+    <div class="product-card">
+      <img src="posters.jpg" alt="Posters">
+      <h3>Pôsteres</h3>
+      <p>Pôsteres em alta qualidade para decoração ou colecionáveis.</p>
+      <div class="price">30.00</div>
+      <button>Comprar</button>
+    </div>
+    <!-- Pacote Surpresa -->
+    <div class="product-card surpresa">
+      <img src="pacotesurpresa.jpg" alt="Pacote Surpresa">
+      <h3>Pacote Surpresa</h3>
+      <p>Itens aleatórios das Vtubers da agência. Pode conter adesivos, camisas, canecas ou pôsteres!</p>
+      <div class="price">90.00</div>
+      <button>Comprar</button>
+    </div>
+  </div>
+
+  <!-- Modal do carrinho -->
+  <div id="cart-modal">
+    <button id="send-whatsapp">💬 Enviar pelo WhatsApp</button>
+  </div>
+
+  <footer>
+    © 2025 NEORO Agência — Todos os direitos reservados.
+    <div class="division-info">
+      Cada compra tem um **preço único**. <br>
+      <strong>40%</strong> do valor vai para o Vtuber responsável e <strong>60%</strong> para a agência.
+    </div>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.product-card button');
+    const cartEmoji = document.querySelector('.cart-emoji');
+    const cartModal = document.getElementById('cart-modal');
+    const sendWhatsappBtn = document.getElementById('send-whatsapp');
+
+    // Recupera carrinho do localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function renderCart() {
+      // Limpa todos os itens, exceto o botão WhatsApp
+      cartModal.innerHTML = '';
+      if(cart.length === 0){
+        cartModal.innerHTML = '<p>Carrinho vazio!</p>';
+      } else {
+        cart.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <span>${item.name} - R$${item.price.toFixed(2)}</span>
+            <button class="remove-btn" data-index="${index}">X</button>
+          `;
+          cartModal.appendChild(div);
+        });
+
+        // Adiciona eventos de remover
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-index'));
+            cart.splice(idx, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+          });
+        });
+      }
+      // Adiciona o botão WhatsApp sempre por último
+      cartModal.appendChild(sendWhatsappBtn);
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.parentElement;
+        const name = card.querySelector('h3').innerText;
+        const price = parseFloat(card.querySelector('.price').innerText);
+        cart.push({name, price});
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        alert(`${name} adicionado ao carrinho!`);
+      });
+    });
+
+    cartEmoji.addEventListener('click', () => {
+      if(cartModal.style.display === 'block'){
+        cartModal.style.display = 'none';
+      } else {
+        renderCart();
+        cartModal.style.display = 'block';
+      }
+    });
+
+    sendWhatsappBtn.addEventListener('click', () => {
+      if(cart.length === 0){
+        alert('O carrinho está vazio!');
+        return;
+      }
+      let mensagem = 'Olá! Gostaria de comprar os seguintes produtos:\n';
+      let total = 0;
+      cart.forEach(item => {
+        mensagem += `- ${item.name} - R$${item.price.toFixed(2)}\n`;
+        total += item.price;
+      });
+      mensagem += `Total: R$${total.toFixed(2)}`;
+      const numero = '5543996637473';
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    });
+
+    // Inicializa o modal
+    renderCart();
+  </script>
+</body>
+</html>

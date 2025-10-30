@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Néoro - Agência VTubers</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("Red.png") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.container {
+    background: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    padding: 50px 80px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255,215,0,0.5);
+}
+
+@keyframes brilhoTitulo {
+    0% { text-shadow: 0 0 10px #fff, 0 0 20px #FFD700, 0 0 40px #FFA500; }
+    50% { text-shadow: 0 0 20px #fff, 0 0 40px #FFE135, 0 0 80px #FFD700; }
+    100% { text-shadow: 0 0 10px #fff, 0 0 20px #FFD700, 0 0 40px #FFA500; }
+}
+
+h1 {
+    font-size: 46px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    animation: brilhoTitulo 2s infinite alternate;
+}
+
+p {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: #ddd;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 50px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    margin: 10px;
+}
+
+.btn:hover {
+    background-color: #ddd;
+    box-shadow: 0 0 20px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.6);
+    transform: scale(1.05);
+}
+
+.vtubers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.vtuber {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid #FFD700;
+    border-radius: 15px;
+    width: 220px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(255,215,0,0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.vtuber:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,215,0,0.8), 0 0 35px rgba(255,223,0,0.6);
+}
+
+.vtuber img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.vtuber-name {
+    font-weight: bold;
+    color: #FFD700;
+    margin-bottom: 5px;
+}
+
+.vtuber-platform {
+    font-size: 14px;
+    color: #FFE135;
+    margin-bottom: 5px;
+}
+
+.vtuber-details {
+    display: none;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #FFE135;
+}
+
+.vtuber:hover .vtuber-details {
+    display: block;
+}
+
+hr {
+    border:1px dashed #FFD700; 
+    margin:5px 0;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Agência Néoro</h1>
+    <p>Nossos VTubers</p>
+
+    <button class="btn" onclick="window.location.href='index.html'">Voltar</button>
+
+    <div class="vtubers">
+
+        <!-- Oriel Estelar -->
+        <div class="vtuber">
+            <img src="mih.png" alt="@Mih_Estelar">
+            <div class="vtuber-name">Oriel Estelar</div>
+            <div class="vtuber-platform">YouTube (@Mih_Estelar)</div>
+            <div class="vtuber-details">
+                <p><strong>Idade:</strong> 17 anos</p>
+                <p><strong>Espécie:</strong> Vampiro da Nova Era</p>
+                <p><strong>Altura:</strong> 1,70m</p>
+                <hr>
+                <p><strong>Linhagem e Genética:</strong></p>
+                <p>Pertence à antiga família Estelar (Star), uma das famílias mais velhas que seguem a cultura das estrelas.</p>
+                <p>Desde o nascimento, carrega uma marca no lado esquerdo do rosto, sinal presente em todas as suas vidas passadas.</p>
+                <hr>
+                <p><strong>Habilidades e Magia:</strong></p>
+                <p>Dom: Comunicação com as estrelas – pode ouvir e dialogar com os astros.</p>
+                <p>Magia: <em>Ren’ai Hoshikuzu (恋愛星屑)</em> – “Poeira Estelar do Amor”.</p>
+                <p>Cria fragmentos cósmicos que curam emoções, fortalecem laços e protegem quem ama.</p>
+                <hr>
+                <p><strong>História / Lore:</strong></p>
+                <p>Aos 12 anos, começou a roubar. Atua como mercador clandestino de relíquias mágicas roubadas, já que os vampiros não são bem aceitos nos dias atuais.</p>
+                <p>Tem fama dividida: para uns é ladrão, para outros um colecionador de tesouros esquecidos.</p>
+                <hr>
+                <p><strong>Personalidade:</strong></p>
+                <p>Alegre e distraído. Gosta de chocolate 🍫. Adora brinquedos de cores chamativas, principalmente azul e roxo.</p>
+                <hr>
+                <p><strong>Alimentação:</strong></p>
+                <p>Fonte: Sangue. Preferência: tipo O negativo (raro e considerado puro).</p>
+            </div>
+        </div>
+
+      <!-- Zezeguima -->
+<div class="vtuber">
+    <img src="zeze.jpg" alt="Zezeguima">
+    <div class="vtuber-name">Zezeguima</div>
+    <div class="vtuber-platform">Plataforma: ???</div>
+    <div class="vtuber-details">
+        <p><strong>📋 Nome:</strong> Zezeguima</p>
+        <p><strong>Idade:</strong> 24 anos</p>
+        <p><strong>Espécie:</strong> Meio-elfo</p>
+        <p><strong>Altura:</strong> 1,82m</p>
+
+        <hr>
+        <p><strong>🧬 Linhagem e Genética:</strong></p>
+        <p>Filho de mãe élfica e pai humano, nunca foi plenamente aceito em nenhum dos dois povos.</p>
+        <p>Herdou a longevidade e afinidade mágica dos elfos, unidas à resistência e adaptabilidade humanas.</p>
+        <p>Carrega marcas rúnicas antigas no corpo e nas vestes, símbolos que brilham quando conjura feitiços.</p>
+
+        <hr>
+        <p><strong>✨ Habilidades e Magia:</strong></p>
+        <p><strong>Dom:</strong> Manipulação Rúnica – canaliza poder através de runas em objetos, pergaminhos ou no ar.</p>
+        <p><strong>Magia:</strong> Arcana e Proibida – invoca feitiços de proteção, destruição ou ilusão com seu grimório encantado, que flutua ao seu redor e responde apenas à sua voz.</p>
+
+        <hr>
+        <p><strong>📜 História / Lore:</strong></p>
+        <p>Desde jovem foi rejeitado, encontrando refúgio em livros esquecidos e bibliotecas abandonadas.</p>
+        <p>Aos 16 anos encontrou um tomo proibido que marcou suas mãos e alma com símbolos de poder ancestral.</p>
+        <p>Desde então, vaga como mago errante, oferecendo seus serviços em troca de moedas, favores ou conhecimento raro.  
+        Visto por alguns como bruxo perigoso, e por outros como última esperança diante do impossível.</p>
+
+        <hr>
+        <p><strong>🎭 Personalidade:</strong></p>
+        <p>Enigmático e sarcástico, ri em momentos inesperados. Prefere livros às multidões, mas gosta de tavernas para observar e manipular pessoas.  
+        Possui curiosidade insaciável e não mede esforços para obter novos conhecimentos.</p>
+
+        <hr>
+        <p><strong>🍷 Alimentação:</strong></p>
+        <p>Se alimenta de comida comum, mas tem o hábito peculiar de beber poções e elixires arcanos como se fossem água.</p>
+    </div>
+</div>
+
+
+       <!-- Puc Heaven -->
+<div class="vtuber">
+    <img src="Puc.jpeg" alt="Puc Heaven" class="vtuber-img">
+    <div class="vtuber-name">🐉🌌 Puc Heaven</div>
+    <div class="vtuber-details">
+        <p><strong>Nome:</strong> Puc Teimosia ✨</p>
+        <p><strong>Idade:</strong> 37 anos</p>
+        <p><strong>Espécie:</strong> Dragão do Céu da Lua Nova 🌙🐉</p>
+        <p><strong>Altura:</strong> 1,97m</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Linhagem e Genética:</strong></p>
+        <p>Originário de um grande reino de dragões, descendente direto da linhagem do rei <strong>Oitom 🐉</strong>, adorado e amado por todos. 
+        Após a morte do rei, a profecia dizia que um dragão herdaria sua marca no olho e restauraria aquilo que foi perdido, guiando o povo com honra.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Habilidades e Magia:</strong></p>
+        <p><strong>Dom:</strong> Aprende apenas observando, manipula magias com facilidade, comunica-se com deuses e dragões, recebendo suas bênçãos.</p>
+        <p><strong>Magia:</strong> <em>Shotgun (🔥インパクトドラゴン🐲)</em> – chuva de socos dourados devastadores. 
+        Pode criar equipamentos extras para os punhos, tornando os ataques ainda mais fatais e críticos.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>História / Lore:</strong></p>
+        <p>Cresceu na pobreza, sem família e sem alimento, sobrevivendo sozinho. 
+        Mesmo sendo rejeitado e visto com desprezo pelas pessoas, nunca desistiu de buscar uma vida tranquila.</p>
+        <p>Com o tempo, foi reconhecido por seu esforço e se tornou parte da guarda real, servindo ao rei Oitom 🐉.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Personalidade:</strong></p>
+        <p>☀️ Gentil, carinhoso, calmo e amoroso. 
+        Gosta de ajudar os outros, construir e compartilhar ideias. 
+        Valoriza a pureza de coração e cumpre suas promessas, mesmo diante da morte.</p>
+        <p><strong>Gostos:</strong> Aprecia comida japonesa 🍣🍱.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Alimentação:</strong></p>
+        <p>Se fortalece através de uma <em>porção de determinação ❤️🌹</em>.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Forma Final:</strong></p>
+        <p><em>As Cinzas Negras de um Dragão Branco</em> – ao sacrificar memórias e alma, assume uma forma dracônica de poder supremo. 
+        Mesmo que reste apenas cinzas ao fim, luta até a última chama de sua existência. 🔥</p>
+    </div>
+</div>
+
+
+        <!-- Kaze Butterfield Sapphire Brown -->
+<div class="vtuber">
+    <img src="kaze.png" alt="@kaze2678luz">
+    <div class="vtuber-name">Kaze Sapphire</div>
+    <div class="vtuber-platform">YouTube (@kaze2678luz)</div>
+    <div class="vtuber-details">
+        <p><strong>Nome:</strong> Kaze Butterfield Sapphire Brown</p>
+        <p><strong>Idade:</strong> 18/19 anos</p>
+        <p><strong>Raça:</strong> Híbrido entre Humano e Deus</p>
+        <p><strong>Altura:</strong> 1,71m</p>
+        
+        <hr>
+        <p><strong>🧬 Linhagem e Genética:</strong></p>
+        <p>Filho de dois humanos, mas descendente de uma linhagem antiga em que sua mãe herdou o sangue de um Deus. Esse vínculo fez com que toda sua árvore genealógica tivesse traços e DNA divinos.</p>
+        
+        <hr>
+        <p><strong>🧙 Habilidades e Magia:</strong></p>
+        <p><strong>Dom:</strong> Manipulação avançada de katana, mestre em técnicas de combate assassino sem um estilo fixo. Imune a veneno, queimaduras, frio e paralisia. Capaz de materializar partes do corpo através de magia.</p>
+        <p><strong>Poderes:</strong> Controle do poder das estrelas, especialmente o do Sol. Pode manipular temperaturas extremas ligadas ao magma, luz e fogo. Detentor do <em>Olho do Universo</em>, que ao unir seus dois olhos permite dar ordens ao próprio universo e até alterá-lo.</p>
+        
+        <hr>
+        <p><strong>📜 História / Lore:</strong></p>
+        <p>Sua história completa está sendo escrita em: <a href="https://www.wattpad.com/story/398339671?utm_source=android&utm_medium=link&utm_content=share_reading&wp_page=library&wp_uname=KazeSapphire" target="_blank">Wattpad - História do Kaze</a></p>
+        
+        <hr>
+        <p><strong>🎭 Personalidade:</strong></p>
+        <p>Kaze, devido a traumas, tende a se fechar e até enlouquecer em certos momentos. No entanto, recupera-se e volta ao normal. Geralmente é mais racional e reservado, mas com amigos próximos se mostra divertido, fazendo piadas e rindo com facilidade.</p>
+    </div>
+</div>
+
+
+ <!-- Darkrez -->
+<div class="vtuber">
+    <img src="darkles.webp" alt="Darkrez" class="vtuber-img">
+    <div class="vtuber-name">🌑 Darkrez</div>
+    <div class="vtuber-platform">Néoro - Guerreiro Dimensional</div>
+
+    <div class="vtuber-details">
+        <p><strong>Idade:</strong> 17 anos</p>
+        <p><strong>Espécie:</strong> Não identificada</p>
+        <p><strong>Altura:</strong> 1,78m</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🧬 Linhagem e Genética:</strong></p>
+        <p>As origens de Darkrez são completamente desconhecidas.  
+        Nenhum registro mágico, científico ou espiritual conseguiu identificar sua espécie.  
+        Ele parece existir entre dimensões — um ser que está e não está, simultaneamente.</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>✨ Habilidades e Magia:</strong></p>
+        <p><strong>Dom:</strong> Mestre em artes marciais e combate com espadas.  
+        Sua técnica é tão refinada que dizem que ele já lutou contra o próprio reflexo — e venceu.</p>
+        <p><strong>Magia:</strong> Capaz de abrir portais dimensionais, alterar sua forma física e manipular a matéria e energia ao seu redor.  
+        Essa combinação de poderes o torna imprevisível em combate e quase impossível de capturar.</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🎨 Hobbies:</strong></p>
+        <p>Gosta de desenhar, assistir animes e dublar personagens.  
+        Apesar de seus dons sombrios, aprecia o lado criativo e artístico da vida — um contraste que o torna ainda mais misterioso.</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🎭 Personalidade:</strong></p>
+        <p>Gentil (até demais), competitivo e extremamente carinhoso.  
+        Mesmo com sua aura enigmática, Darkrez é alguém que protege os outros com determinação e empatia.  
+        Raramente mostra medo, e seu sorriso sereno esconde o peso de quem já viu universos se desintegrarem.</p>
+    </div>
+</div>
+
+      <!-- Sakomo Hideki -->
+<div class="vtuber">
+    <img src="sakomo_hideki.webp" alt="Sakomo Hideki" class="vtuber-img">
+    <div class="vtuber-name">❄️ Sakomo Hideki</div>
+    <div class="vtuber-platform">Néoro - Guardiã do Inverno</div>
+
+    <div class="vtuber-details">
+        <p><strong>Idade:</strong> 18 anos</p>
+        <p><strong>Espécie:</strong> Raposa Branca das Neves (Híbrida)</p>
+        <p><strong>Altura:</strong> 1,78m</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🧬 Linhagem e Genética:</strong></p>
+        <p>Filha de uma deusa das neves com um humano raposo, Sakomo nasceu com a missão de herdar e proteger o domínio do inverno.  
+        Sua linhagem mistura a serenidade divina com a astúcia de um espírito raposo, tornando-a uma das últimas guardiãs das neves eternas. ❄️🦊</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>✨ Habilidades e Magia:</strong></p>
+        <p><strong>Dom:</strong> Mestre no uso da katana, unindo elegância e precisão em cada golpe.</p>
+        <p><strong>Magia:</strong> Quando enfurecida, abre um <em>Portal das Neves</em> e domina o gelo e a neve com as próprias mãos, controlando o frio como se fosse uma extensão de sua alma. 🌨️</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>📜 História / Lore:</strong></p>
+        <p>Sou uma raposa branca das neves, a guardiã do inverno.  
+        Em uma de minhas vigílias, um jovem dragão caiu dos céus ferido — levei-o para meu templo congelado e cuidei dele até que recobrasse a consciência.  
+        Desde então, protejo os seres que cruzam meu domínio gélido, mantendo o equilíbrio entre o frio e a vida. 🐉❄️</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🎭 Personalidade:</strong></p>
+        <p>Gentil, carinhosa e fofa, mas pode se tornar feroz quando provocada.  
+        É calma como a neve que cai — mas seu coração, quando ameaçado, é tão tempestuoso quanto uma nevasca. 💙</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🍣 Gosto Alimentar:</strong></p>
+        <p>Adora peixe fresco, especialmente servido em noites frias sob a luz da lua. 🌕🐟</p>
+    </div>
+</div>
+
+<!-- Kiyomi Suzuri -->
+<div class="vtuber">
+    <img src="kiyomi_suzuri.webp" alt="Kiyomi Suzuri" class="vtuber-img">
+    <div class="vtuber-name">🌌 Kiyomi Suzuri ✨🔮</div>
+    <div class="vtuber-platform">Néoro - Bruxa da Lua</div>
+
+    <div class="vtuber-details">
+        <p><strong>Idade:</strong> 500 mil anos</p>
+        <p><strong>Espécie:</strong> Bruxa da Lua (meio demônio e meio anjo)</p>
+        <p><strong>Altura:</strong> 1,85m</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🧬 Linhagem e Genética:</strong></p>
+        <p>Filha de uma Deusa da Lua e de um bruxo meio demônio, Kiyomi carrega em si o equilíbrio perfeito entre luz e trevas.  
+        Possui uma <em>lua mística</em> em sua testa e uma maldição escondida em sua mão — sinais do castigo divino e do poder demoníaco que coexistem em sua alma. 🌙</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>✨ Habilidades e Magia:</strong></p>
+        <p><strong>Dom:</strong> Através da lua em sua testa, pode enxergar as intenções e emoções mais profundas das pessoas. 🔮</p>
+        <p><strong>Magia:</strong> Detém poderes demoníacos que lhe concedem imortalidade e a habilidade de ceifar vidas.  
+        Seu colar lunar e seu livro sagrado permitem que ela controle a lua, cure ferimentos e até traga almas de volta à vida.  
+        Como anjo caído, também pode comandar demônios e invocar feitiços de purificação e destruição.</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>📜 História / Lore:</strong></p>
+        <p>Um anjo não pode amar outras espécies. Mas Kiyomi desafiou o destino e quebrou as regras divinas.  
+        Como punição, foi aprisionada no corpo de uma bruxa metade demônio, esquecendo seu passado e o rosto de quem amava.  
+        Tudo o que restou foi um colar e uma frase gravada em sua mente:  
+        <em>“Siga as constelações.”</em> 🌌  
+        Agora, vaga entre mundos, tentando recuperar suas memórias e encontrar aquele que um dia lhe roubou o coração — e talvez sua alma.</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🎭 Personalidade:</strong></p>
+        <p>Alegre e radiante, mesmo em meio à escuridão.  
+        Kiyomi canta para as estrelas e pinta as memórias das pessoas, eternizando sentimentos esquecidos.  
+        Apesar do poder sombrio que carrega, seu sorriso transmite calma — e perigo ao mesmo tempo. ✨</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>💎 Gostos e Preferências:</strong></p>
+        <p>Adora cantar e pintar as lembranças alheias.  
+        Suas cores favoritas são o vermelho-sangue e o prateado da lua, e nunca é vista sem seu colar lunar. 🌕</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>🍷 Alimentação:</strong></p>
+        <p>Se alimenta das almas das pessoas, absorvendo suas emoções e memórias para manter-se viva e poderosa.</p>
+    </div>
+</div>
+
+
+<!-- Light -->
+<div class="vtuber">
+    <img src="misterio1.jpg" alt="Light" class="vtuber-img">
+    <div class="vtuber-name">🌌 Light</div>
+    <div class="vtuber-details">
+        <p><strong>Idade:</strong> 19 anos</p>
+        <p><strong>Raça:</strong> Humano / Oni</p>
+        <p><strong>Altura:</strong> 1,89m</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Linhagem e Genética:</strong></p>
+        <p>Pertence à antiga família <em>MorningStar</em>, uma das famílias mais antigas dos demônios.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Habilidades e Magia:</strong></p>
+        <p><strong>Dom:</strong> Muito habilidoso em luta corpo a corpo e artes marciais.</p>
+        <p><strong>Magia:</strong> <em>Chama Infernal</em> – cria punhos de fogo azul para usar no combate.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>História / Lore:</strong></p>
+        <p>Aos 11 anos perdeu sua família. Desde então atua como caçador na agência chamada <strong>Blue Vórtex</strong>, lutando contra anomalias espirituais.</p>
+        <p>Tem fama dividida: para uns é um monstro, para outros um grande amigo.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Personalidade:</strong></p>
+        <p>Alegre e engraçado. Gosta de pizza 🍕. Adora fazer piadas.</p>
+    </div>
+</div>
+<!-- Vulperian -->
+<div class="vtuber">
+    <img src="Vulperian.jpg" alt="Vulperian" class="vtuber-img">
+    <div class="vtuber-name">🌌 Vulperian</div>
+    <div class="vtuber-platform">YouTube / Twitch
+</div>
+    <div class="vtuber-details">
+        <p><strong>Idade:</strong> 7000 anos</p>
+        <p><strong>Espécie:</strong> Híbrido</p>
+        <p><strong>Altura:</strong> 1,73m</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Linhagem e Genética:</strong></p>
+        <p>Híbrido de raposa, coruja e humano, resultado da união entre as linhagens sagradas do Sol e da Lua.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Habilidades e Magia:</strong></p>
+        <p><strong>Dom:</strong> 
+            <ul>
+                <li>Livro do Destino – na forma <em>Guardião da História</em>.</li>
+                <li>Livro de Feitiços – na forma <em>Coruja da Lua</em>.</li>
+                <li>Leitura de Mentes – na forma <em>Raposa do Sol</em>.</li>
+                <li>Empunha a <em>Foice do Eclipse</em>.</li>
+            </ul>
+        </p>
+        <p><strong>Magia:</strong> Capaz de alterar a história, dar vida a desenhos, controlar papel, livros e artefatos mágicos. 
+        Pratica bruxaria e pode alternar entre suas formas de coruja e raposa, cada uma com poderes únicos. 🪄</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>História / Lore:</strong></p>
+        <p>Filho dos deuses <strong>Kiw</strong> e <strong>Naiwin</strong>, Vulperian nasceu destinado a ser o <em>Deus do Eclipse</em>. 
+        No entanto, ao se apaixonar por uma humana, quebrou uma das leis divinas e foi banido do Reino dos Deuses. 
+        Separado de seus pais, vagou até ser escolhido pelos guardiões do Fogo, Água, Terra e Ar para se tornar o <strong>Guardião da História</strong>, protetor do passado, presente e futuro.</p>
+        <p>Agora, renascido e fortalecido, busca recuperar seu lugar no Reino Celestial e confrontar seus pais e os deuses que o exilaram.</p>
+
+        <p><em>Tem fama dividida: para uns, um guardião da história; para outros, um anjo caído.</em></p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Personalidade:</strong></p>
+        <p>Fofo, engraçado e um pouco safado 😏. 
+        Porém, quando necessário, torna-se sério, sábio e protetor. 
+        Seu carisma e energia equilibram luz e escuridão.</p>
+
+        <hr style="border:1px dashed #FFD700; margin:5px 0;">
+
+        <p><strong>Alimentação:</strong></p>
+        <p>Absorve <em>energia mágica</em> para se sustentar.</p>
+        <p><strong>Fonte:</strong> YouTube – <em>Vulperian</em></p>
+        <p><strong>Preferência:</strong> Plataformas: YouTube / Twitter</p>
+    </div>
+</div>
+<!-- Gurewmimizu -->
+<div class="vtuber">
+    <img src="mimizu.webp" alt="Gurewmimizu" class="vtuber-img">
+    <div class="vtuber-name">🪼 Gurewmimizu</div>
+    <div class="vtuber-platform">Agência Néoro</div>
+
+    <div class="vtuber-details">
+        <p><strong>Idade (Lore):</strong> 22 anos</p>
+        <p><strong>Espécie:</strong> Baleia Jubarte</p>
+        <p><strong>Altura (Lore):</strong> 1,88m</p>
+
+        <hr style="border:1px dashed #00BFFF; margin:5px 0;">
+
+        <p><strong>Dom:</strong></p>
+        <p>Artista talentosa dos mares, conhecida por suas pinturas inspiradas nas correntes oceânicas e por encantar seu público com apresentações subaquáticas. 
+        Seu talento em nadar a velocidades impressionantes faz parte do seu charme natural. 🎨🌊</p>
+
+        <hr style="border:1px dashed #00BFFF; margin:5px 0;">
+
+        <p><strong>Hobby:</strong></p>
+        <p>Desenhar, tocar violino e dublar — suas paixões se misturam em performances que unem arte, som e emoção, refletindo a beleza e fluidez do oceano.</p>
+
+        <hr style="border:1px dashed #00BFFF; margin:5px 0;">
+
+        <p><strong>Personalidade:</strong></p>
+        <p>Divertida e engraçada, Gurewmimizu adora espalhar boas energias e conselhos sábios. 
+        É conhecida por sua empatia e por transformar qualquer ambiente em um lugar mais leve e criativo. 💙</p>
+
+        <hr style="border:1px dashed #00BFFF; margin:5px 0;">
+
+        <p><strong>Curiosidade:</strong></p>
+        <p>Sua presença é muitas vezes acompanhada por uma suave melodia de violino — dizem que é o som do oceano respondendo à sua alma artística.</p>
+    </div>
+</div>
+<!-- Aster -->
+<div class="vtuber">
+    <img src="aster.jpeg" alt="Aster" class="vtuber-img">
+    <div class="vtuber-name">🕷️ Aster</div>
+    <div class="vtuber-platform">Fundação C.P.C.S</div>
+
+    <div class="vtuber-details">
+        <p><strong>Idade:</strong> 24 anos</p>
+        <p><strong>Espécie:</strong> Elfo</p>
+        <p><strong>Altura (Lore):</strong> 1,80m</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>Dom:</strong></p>
+        <p>Maestria absoluta na escrita e em combate corpo a corpo — combina o refinamento da caneta com a precisão da lâmina.
+        Sua mente é tão afiada quanto suas palavras, e sua técnica, impecável. ✒️⚔️</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>Hobby:</strong></p>
+        <p>Obcecado por documentos e por detalhes minuciosos — nada passa despercebido por seus olhos elfos treinados.
+        Costuma revisar relatórios até a perfeição, irritando (e impressionando) quem trabalha com ele.</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>Personalidade:</strong></p>
+        <p>Divertido, espirituoso e explosivamente sincero. 
+        Vive xingando e corrigindo todos ao redor, mas é impossível não gostar de sua autenticidade. 
+        Mesmo quando parece irritado, sua lealdade e senso de justiça o tornam um aliado confiável. 🕸️</p>
+
+        <hr style="border:1px dashed #C0A060; margin:5px 0;">
+
+        <p><strong>Origem:</strong></p>
+        <p>Personagem do canal <a href="https://youtube.com/@mundo_de_aster?si=IkNZU5GBtBxni7-5" target="_blank">@mundo_de_aster</a></p>
+
+        <p><strong>Afiliação:</strong> Fundação C.P.C.S</p>
+    </div>
+</div>
+
+
+    </div>
+</div>
+</body>
+</html>
