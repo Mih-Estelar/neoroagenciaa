@@ -1,155 +1,524 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Néoro - Agência</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #0b0f2f;
-      color: white;
-      text-align: center;
-    }
-
-    header img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .banner {
-      padding: 60px 20px;
-      display: flex;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Néoro Agência - VTubers</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #e6f0ff 0%, #fff 100%);
+    color: #0a1a66;
+  }
+  header {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #002580;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  header img.logo {
+    width: 220px;
+    margin-bottom: 15px;
+    border-radius: 16px;
+    box-shadow: 0 0 18px rgba(0,40,160,0.07);
+  }
+  .characters {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 30px 15px 0;
+  }
+  .card {
+    width: 160px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 60, 0.1);
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 8px 25px rgba(0, 0, 60, 0.25);
+  }
+  .card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+  .card p {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #002580;
+    margin: 0;
+  }
+  .profile {
+    display: none;
+    padding: 25px 20px 15px 20px;
+    border-top: 3px solid #002580;
+    max-width: 970px;
+    margin: 25px auto 0 auto;
+    background: #f7f9ff;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 60, 0.1);
+    align-items: flex-start;
+  }
+  .profile.active {
+    display: flex;
+    gap: 25px;
+  }
+  .profile img.small-photo {
+    max-width: 150px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,60,0.15);
+  }
+  .profile .info {
+    max-width: 700px;
+    line-height: 1.45;
+    font-size: 1em;
+    white-space: pre-wrap;
+    color: #1a2a66;
+  }
+  .profile h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    color: #00194d;
+  }
+  .store {
+    padding: 30px 20px;
+    border-top: 3px solid #002580;
+    background: #e9f0ff;
+    text-align: center;
+  }
+  .store h2 {
+    color: #002580;
+    font-size: 2em;
+    margin-bottom: 25px;
+    font-weight: 700;
+  }
+  .product {
+    display: inline-block;
+    width: 160px;
+    margin: 15px 12px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 18px rgba(0, 0, 60, 0.1);
+    padding: 18px 12px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .product:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 60, 0.16);
+  }
+  .product img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+  .product p {
+    font-weight: 600;
+    color: #1a2a66;
+    margin: 0 0 15px;
+    font-size: 1.1em;
+  }
+  .cart-btn {
+    background-color: #0040cc;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1em;
+    transition: background-color 0.3s;
+  }
+  .cart-btn:hover {
+    background-color: #002580;
+  }
+  .cart-summary {
+    margin-top: 25px;
+    font-size: 1.15em;
+    color: #002080;
+  }
+  .apply-form {
+    margin: 40px auto;
+    max-width: 600px;
+    background: #f0f4ff;
+    padding: 30px 25px;
+    border-radius: 18px;
+    border: 3px solid #002580;
+    box-shadow: 0 6px 20px rgba(0,0,90,0.12);
+  }
+  .apply-form h2 {
+    text-align: center;
+    color: #002580;
+    font-size: 1.9em;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+  .apply-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #001a4d;
+    font-size: 1.1em;
+  }
+  .apply-form input,
+  .apply-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1em;
+    border: 2px solid #0040cc;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.25s;
+  }
+  .apply-form input:focus,
+  .apply-form textarea:focus {
+    border-color: #002580;
+  }
+  .apply-form button {
+    margin-top: 25px;
+    width: 100%;
+    background-color: #0040cc;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .apply-form button:hover {
+    background-color: #001f66;
+  }
+  @media (max-width: 850px) {
+    .profile.active {
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      min-height: 60vh;
     }
-
-    @keyframes brilhoTitulo {
-      0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff0000, 0 0 40px #ff0000; }
-      50% { text-shadow: 0 0 20px #fff, 0 0 40px #ff4d4d, 0 0 80px #ff0000; }
-      100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff0000, 0 0 40px #ff0000; }
+    .profile .info {
+      max-width: 100%;
     }
-
-    .banner h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      font-weight: bold;
-      animation: brilhoTitulo 2s infinite alternate;
-      color: #ffdd57;
+    .characters {
+      gap: 15px;
+      padding: 20px 10px;
     }
-
-    .banner p {
-      font-size: 20px;
-      max-width: 700px;
-      margin: 0 auto 30px;
+    .card {
+      width: 45%;
     }
-
-    .botoes {
-      display: flex;
-      gap: 15px; 
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
+    .store .product {
+      width: 45%;
+      margin: 15px 2.5%;
     }
-
-    .btn, button {
-      background: #ffdd57;
-      color: #000;
-      padding: 15px 30px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.3s;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255,255,255,0.4);
-      border: none;
+  }
+  @media (max-width: 420px) {
+    .card,
+    .store .product {
+      width: 95%;
+      margin: 15px auto;
     }
-
-    .btn:hover, button:hover {
-      background: #ffc42b;
-      box-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,0,0,0.6);
-      transform: scale(1.05);
-    }
-
-    footer {
-      margin-top: 80px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      font-size: 14px;
-    }
-
-    .mascote {
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      width: 120px;
-      height: auto;
-      z-index: 1000;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .mascote:hover {
-      transform: scale(1.1);
-    }
-
-    /* MEDIA QUERIES PARA CELULAR */
-    @media (max-width: 768px) {
-      .banner h1 {
-        font-size: 32px;
-      }
-      .banner p {
-        font-size: 16px;
-        max-width: 90%;
-      }
-      .btn, button {
-        font-size: 16px;
-        padding: 12px 25px;
-      }
-      .botoes {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .mascote {
-        width: 90px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <img src="Re.png" alt="Banner NEORO Agência">
-  </header>
-
-  <section class="banner">
-    <h1>Néoro - Agência de Vtubers</h1>
-    <p>Conheça Nossos Talentos e Produtos Exclusivos ✨</p>
-    <div class="botoes">
-      <a href="produtos.html" class="btn">Ver Produtos</a>
-      <button id="botao-talentos">Talentos</button>
-      <button id="botao-agencia">Agência</button>
+<header>
+  <img src="logo.jpg" alt="Néoro Agência Logo" class="logo" />
+  Néoro Agência
+</header>
+<section class="characters">
+  <div class="card" onclick="showProfile(0)">
+    <img src="misterio1.jpg" alt="Oriel Estelar" />
+    <p>Oriel Estelar</p>
+  </div>
+  <div class="card" onclick="showProfile(1)">
+    <img src="misterio1.jpg" alt="Zezeguima" />
+    <p>Zezeguima</p>
+  </div>
+  <div class="card" onclick="showProfile(2)">
+    <img src="misterio1.jpg" alt="Puc Teimosia" />
+    <p>Puc Teimosia</p>
+  </div>
+  <div class="card" onclick="showProfile(3)">
+    <img src="misterio1.jpg" alt="Kaze Butterfly Sapphire Brown" />
+    <p>Kaze Butterfield Sapphire Brown</p>
+  </div>
+  <div class="card" onclick="showProfile(4)">
+    <img src="misterio1.jpg" alt="Kiyomi Suzuri" />
+    <p>Kiyomi Suzuri</p>
+  </div>
+  <div class="card" onclick="showProfile(5)">
+    <img src="misterio1.jpg" alt="Light" />
+    <p>Light</p>
+  </div>
+  <div class="card" onclick="showProfile(6)">
+    <img src="misterio1.jpg" alt="Aster" />
+    <p>Aster</p>
+  </div>
+</section>
+<section id="profiles">
+  <div class="profile" id="profile-0">
+    <img src="oriel3.png" alt="Oriel Estelar" class="small-photo" />
+    <div class="info">
+      <h3>Oriel Estelar</h3>
+      <p>
+        Idade: 17 anos
+        Espécie: Vampiro da Nova Era
+        Altura: 1,70m
+        Linhagem e Genética:
+        Pertence à antiga família Estelar (Star), uma das famílias mais velhas que seguem a cultura das estrelas.
+        Desde o nascimento, carrega uma marca no lado esquerdo do rosto, sinal presente em todas as suas vidas passadas.
+        Habilidades e Magia:
+        Dom: Comunicação com as estrelas – pode ouvir e dialogar com os astros.
+        Magia: Ren’ai Hoshikuzu (恋愛星屑) – “Poeira Estelar do Amor”.
+        Cria fragmentos cósmicos que curam emoções, fortalecem laços e protegem quem ama.
+        História / Lore:
+        Aos 12 anos, começou a roubar. Atua como mercador clandestino de relíquias mágicas roubadas, já que os vampiros não são bem aceitos nos dias atuais.
+        Tem fama dividida: para uns é ladrão, para outros um colecionador de tesouros esquecidos.
+        Personalidade:
+        Alegre e distraído. Gosta de chocolate 🍫. Adora brinquedos de cores chamativas, principalmente azul e roxo.
+        Alimentação:
+        Fonte: Sangue. Preferência: tipo O negativo (raro e considerado puro).
+      </p>
     </div>
-  </section>
-
-  <img src="mascote.png.png" alt="Mascote Néoro" class="mascote">
-
-  <footer>
-    © 2025 NEORO Agência — Todos os direitos reservados.
-  </footer>
-
-  <script>
-    document.getElementById("botao-talentos").addEventListener("click", () => {
-      window.location.href = "pagina2.html";
+  </div>
+  <div class="profile" id="profile-1">
+    <img src="zezeguima.png" alt="Zezeguima" class="small-photo" />
+    <div class="info">
+      <h3>Zezeguima</h3>
+      <p>
+        Idade: 24 anos
+        Espécie: Meio-elfo
+        Altura: 1,82m
+        Linhagem e Genética:
+        Filho de mãe élfica e pai humano, nunca foi plenamente aceito em nenhum dos dois povos.
+        Herdou a longevidade e afinidade mágica dos elfos, unidas à resistência e adaptabilidade humanas.
+        Carrega marcas rúnicas antigas no corpo e nas vestes, símbolos que brilham quando conjura feitiços.
+        Habilidades e Magia:
+        Dom: Manipulação Rúnica – canaliza poder através de runas em objetos, pergaminhos ou no ar.
+        Magia: Arcana e Proibida – invoca feitiços de proteção, destruição ou ilusão com seu grimório encantado, que flutua ao seu redor e responde apenas à sua voz.
+        História / Lore:
+        Desde jovem foi rejeitado, encontrando refúgio em livros esquecidos e bibliotecas abandonadas.
+        Aos 16 anos encontrou um tomo proibido que marcou suas mãos e alma com símbolos de poder ancestral.
+        Desde então, vaga como mago errante, oferecendo seus serviços em troca de moedas, favores ou conhecimento raro. Visto por alguns como bruxo perigoso, e por outros como última esperança diante do impossível.
+        Personalidade:
+        Enigmático e sarcástico, ri em momentos inesperados. Prefere livros às multidões, mas gosta de tavernas para observar e manipular pessoas. Possui curiosidade insaciável e não mede esforços para obter novos conhecimentos.
+        Alimentação:
+        Se alimenta de comida comum, mas tem o hábito peculiar de beber poções e elixires arcanos como se fossem água.
+      </p>
+    </div>
+  </div>
+  <div class="profile" id="profile-2">
+    <img src="puc-teimosia.png" alt="Puc Teimosia" class="small-photo" />
+    <div class="info">
+      <h3>Puc Teimosia</h3>
+      <p>
+        Idade: 37 anos
+        Espécie: Dragão do Céu da Lua Nova 🌙🐉
+        Altura: 1,97m
+        Linhagem e Genética:
+        Originário de um grande reino de dragões, descendente direto da linhagem do rei Oitom 🐉...
+        Habilidades e Magia:
+        Dom: Aprende apenas observando, manipula magias com facilidade, comunica-se com deuses e dragões...
+        Magia: Shotgun (🔥インパクトドラゴン🐲)...
+        História / Lore:
+        Cresceu na pobreza, sem família e sem alimento, sobrevivendo sozinho...
+        Personalidade:
+        ☀️ Gentil, carinhoso, calmo e amoroso. Gosta de ajudar os outros...
+        Gostos: Aprecia comida japonesa 🍣🍱.
+        Alimentação:
+        Se fortalece através de uma porção de determinação ❤️🌹.
+        Forma Final:
+        As Cinzas Negras de um Dragão Branco...
+      </p>
+    </div>
+  </div>
+  <div class="profile" id="profile-3">
+    <img src="kaze-sapphire.png" alt="Kaze Butterfield Sapphire Brown" class="small-photo" />
+    <div class="info">
+      <h3>Kaze Butterfield Sapphire Brown</h3>
+      <p>
+        Idade: 18/19 anos
+        Raça: Híbrido entre Humano e Deus
+        Altura: 1,71m
+        Linhagem e Genética:
+        Filho de dois humanos, mas descendente de uma linhagem antiga em que sua mãe herdou o sangue de um Deus...
+        Habilidades e Magia:
+        Dom: Manipulação avançada de katana, mestre em técnicas...
+        Poderes: Controle do poder das estrelas...
+        História / Lore:
+        Sua história completa está sendo escrita em:
+        <a href="https://www.wattpad.com/story/xxxxxxx" target="_blank" rel="noopener noreferrer">Wattpad - História do Kaze</a>
+        Personalidade:
+        Kaze, devido a traumas, tende a se fechar...
+      </p>
+    </div>
+  </div>
+  <div class="profile" id="profile-4">
+    <img src="kiyomi-suzuri.png" alt="Kiyomi Suzuri" class="small-photo" />
+    <div class="info">
+      <h3>Kiyomi Suzuri</h3>
+      <p>
+        Bruxa da Lua
+        Idade: 500 mil anos
+        Espécie: Bruxa da Lua (meio demônio e meio anjo)
+        Altura: 1,85m
+        Linhagem e Genética:
+        Filha de uma Deusa da Lua e de um bruxo meio demônio...
+        Habilidades e Magia:
+        Dom: Através da lua em sua testa...
+        Magia: Detém poderes demoníacos que lhe concedem imortalidade...
+        História / Lore:
+        Um anjo não pode amar outras espécies...
+        Personalidade:
+        Alegre e radiante...
+        Gostos e Preferências:
+        Adora cantar e pintar...
+        Alimentação:
+        Se alimenta das almas das pessoas...
+      </p>
+    </div>
+  </div>
+  <div class="profile" id="profile-5">
+    <img src="light.png" alt="Light" class="small-photo" />
+    <div class="info">
+      <h3>Light</h3>
+      <p>
+        Idade: 19 anos
+        Raça: Humano / Oni
+        Altura: 1,89m
+        Linhagem e Genética:
+        Pertence à antiga família MorningStar...
+        Habilidades e Magia:
+        Dom: Muito habilidoso em luta corpo a corpo...
+        Magia: Chama Infernal...
+        História / Lore:
+        Aos 11 anos perdeu sua família...
+        Personalidade:
+        Alegre e engraçado...
+      </p>
+    </div>
+  </div>
+  <div class="profile" id="profile-6">
+    <img src="aster.png" alt="Aster" class="small-photo" />
+    <div class="info">
+      <h3>Aster</h3>
+      <p>
+        Fundação C.P.C.S
+        Idade: 24 anos
+        Espécie: Elfo
+        Altura (Lore): 1,80m
+        Dom:
+        Maestria absoluta na escrita e em combate corpo a corpo...
+        Hobby:
+        Obcecado por documentos e por detalhes minuciosos...
+        Personalidade:
+        Divertido, espirituoso e explosivamente sincero...
+        Origem:
+        Personagem do canal @mundo_de_aster
+        Afiliação: Fundação C.P.C.S
+      </p>
+    </div>
+  </div>
+</section>
+<section class="store">
+  <h2>Loja</h2>
+  <div class="product" data-name="Adesivo" data-price="5">
+    <img src="adesivo.jpg" alt="Adesivo" />
+    <p>Adesivo - R$5</p>
+    <button class="cart-btn" onclick="addToCart('Adesivo', 5)">Adicionar</button>
+  </div>
+  <div class="product" data-name="Poster" data-price="20">
+    <img src="poster.jpg" alt="Poster" />
+    <p>Poster - R$20</p>
+    <button class="cart-btn" onclick="addToCart('Poster', 20)">Adicionar</button>
+  </div>
+  <div class="product" data-name="Pulseira" data-price="10">
+    <img src="pulseira.jpg" alt="Pulseira" />
+    <p>Pulseira - R$10</p>
+    <button class="cart-btn" onclick="addToCart('Pulseira', 10)">Adicionar</button>
+  </div>
+  <div class="cart-summary">
+    <p><strong>Carrinho:</strong> <span id="cartContents">Nenhum item</span></p>
+    <button class="cart-btn" onclick="goToWhatsApp()">Enviar para WhatsApp</button>
+  </div>
+</section>
+<section class="apply-form">
+  <h2>Envie sua ficha para tentar entrar na agência</h2>
+  <form id="applicationForm" onsubmit="return false;">
+    <label for="name">Nome completo:</label>
+    <input type="text" id="name" required />
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" required />
+    <label for="discord">Discord:</label>
+    <input type="text" id="discord" />
+    <label for="details">Conte um pouco sobre você:</label>
+    <textarea id="details" rows="5" required></textarea>
+    <button type="button" onclick="enviarFichaWhatsApp()">Enviar ficha no WhatsApp</button>
+  </form>
+</section>
+<script>
+  function showProfile(index) {
+    var profiles = document.querySelectorAll('.profile');
+    profiles.forEach(function(profile) {
+      profile.classList.remove('active');
     });
+    if (profiles[index]) {
+      profiles[index].classList.add('active');
+      profiles[index].scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  }
+  const cart = [];
+  function addToCart(name, price) {
+    cart.push({name, price});
+    updateCartText();
+  }
+  function updateCartText() {
+    const cartContents = document.getElementById('cartContents');
+    if (cart.length === 0) {
+      cartContents.textContent = 'Nenhum item';
+    } else {
+      const items = cart.map(item => item.name).join(', ');
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      cartContents.textContent = `${items} - R$${total}`;
+    }
+  }
+  function goToWhatsApp() {
+    if (cart.length === 0) {
+      alert('Seu carrinho está vazio.');
+      return;
+    }
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const itemsDesc = cart.map(item => `${item.name} (R$${item.price})`).join(', ');
+    const message = `Olá! Gostaria de comprar: ${itemsDesc}. Total: R$${total}.`;
+    const url = `https://wa.me/554396637473?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+  function enviarFichaWhatsApp() {
+    const nome = encodeURIComponent(document.getElementById('name').value.trim());
+    const email = encodeURIComponent(document.getElementById('email').value.trim());
+    const discord = encodeURIComponent(document.getElementById('discord').value.trim());
+    const detalhes = encodeURIComponent(document.getElementById('details').value.trim());
+    const numeroWhatsApp = '554396637473';
 
-    document.getElementById("botao-agencia").addEventListener("click", () => {
-      window.location.href = "agencia.html";
-    });
-  </script>
+    if (!nome || !email || !detalhes) {
+      alert('Por favor, preencha os campos obrigatórios.');
+      return;
+    }
+
+    const mensagem = `Olá,%0aGostaria de enviar minha ficha para a Néoro Agência:%0a%0a*Nome:* ${nome}%0a*E-mail:* ${email}%0a*Discord:* ${discord}%0a*Detalhes:* ${detalhes}`;
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+    window.open(url, '_blank');
+  }
+</script>
 </body>
 </html>
