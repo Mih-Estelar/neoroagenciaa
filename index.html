@@ -1,524 +1,699 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Néoro Agência - VTubers</title>
+<title>Néoro-agência VTubers</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <style>
   body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom, #e6f0ff 0%, #fff 100%);
-    color: #0a1a66;
+    font-family: 'Arial', sans-serif;
+    background: #01031a;
+    color: #e9f1fc;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
   }
+  /* Estrelas caindo */
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: #aad4ff;
+    opacity: 0.85;
+    pointer-events: none;
+    width: 2px;
+    height: 2px;
+    top: -10px;
+    left: calc(100% * var(--x));
+    animation: fall linear infinite;
+  }
+  @keyframes fall {0%{transform:translateY(0)}100%{transform:translateY(110vh);opacity:0}}
+
+  /* Header fixo */
   header {
-    text-align: center;
-    padding: 30px 20px;
-    background-color: #002580;
-    color: white;
-    font-size: 2em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 56px;
+    background: rgba(0, 20, 50, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 1000;
+    box-shadow: 0 2px 7px #003366cc;
+  }
+  header .logo {
+    font-size: 1.6rem;
     font-weight: bold;
-    letter-spacing: 2px;
+    color: #aad4ff;
+    cursor: default;
   }
-  header img.logo {
-    width: 220px;
-    margin-bottom: 15px;
-    border-radius: 16px;
-    box-shadow: 0 0 18px rgba(0,40,160,0.07);
-  }
-  .characters {
+  nav {
     display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    padding: 30px 15px 0;
-  }
-  .card {
-    width: 160px;
-    border-radius: 15px;
-    background: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 60, 0.1);
-    padding: 15px;
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .card:hover {
-    transform: translateY(-10px) scale(1.04);
-    box-shadow: 0 8px 25px rgba(0, 0, 60, 0.25);
-  }
-  .card img {
-    width: 100%;
-    border-radius: 15px;
-    margin-bottom: 10px;
-  }
-  .card p {
+    gap: 18px;
     font-weight: 600;
-    font-size: 1.1em;
-    color: #002580;
-    margin: 0;
+    font-size: 1rem;
   }
-  .profile {
-    display: none;
-    padding: 25px 20px 15px 20px;
-    border-top: 3px solid #002580;
-    max-width: 970px;
-    margin: 25px auto 0 auto;
-    background: #f7f9ff;
-    border-radius: 15px;
-    box-shadow: 0 6px 18px rgba(0, 0, 60, 0.1);
-    align-items: flex-start;
-  }
-  .profile.active {
-    display: flex;
-    gap: 25px;
-  }
-  .profile img.small-photo {
-    max-width: 150px;
-    border-radius: 18px;
-    box-shadow: 0 4px 12px rgba(0,0,60,0.15);
-  }
-  .profile .info {
-    max-width: 700px;
-    line-height: 1.45;
-    font-size: 1em;
-    white-space: pre-wrap;
-    color: #1a2a66;
-  }
-  .profile h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.8em;
-    color: #00194d;
-  }
-  .store {
-    padding: 30px 20px;
-    border-top: 3px solid #002580;
-    background: #e9f0ff;
-    text-align: center;
-  }
-  .store h2 {
-    color: #002580;
-    font-size: 2em;
-    margin-bottom: 25px;
-    font-weight: 700;
-  }
-  .product {
-    display: inline-block;
-    width: 160px;
-    margin: 15px 12px;
-    border-radius: 15px;
-    background: white;
-    box-shadow: 0 4px 18px rgba(0, 0, 60, 0.1);
-    padding: 18px 12px;
-    text-align: center;
-    transition: transform 0.3s;
-  }
-  .product:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 10px 30px rgba(0, 0, 60, 0.16);
-  }
-  .product img {
-    width: 100%;
-    border-radius: 15px;
-    margin-bottom: 15px;
-  }
-  .product p {
-    font-weight: 600;
-    color: #1a2a66;
-    margin: 0 0 15px;
-    font-size: 1.1em;
-  }
-  .cart-btn {
-    background-color: #0040cc;
-    color: white;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 1em;
+  nav a {
+    color: #aad4ff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    text-decoration: none;
     transition: background-color 0.3s;
   }
-  .cart-btn:hover {
-    background-color: #002580;
+  nav a:hover {
+    background-color: #003366bb;
   }
-  .cart-summary {
-    margin-top: 25px;
-    font-size: 1.15em;
-    color: #002080;
+  button.loja-btn {
+    background-color: #2277cc;
+    border: none;
+    color: white;
+    padding: 7px 18px;
+    border-radius: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.25s;
   }
-  .apply-form {
-    margin: 40px auto;
-    max-width: 600px;
-    background: #f0f4ff;
-    padding: 30px 25px;
-    border-radius: 18px;
-    border: 3px solid #002580;
-    box-shadow: 0 6px 20px rgba(0,0,90,0.12);
+  button.loja-btn:hover {
+    background-color: #133e67;
   }
-  .apply-form h2 {
+
+  main {
+    margin-top: 68px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 14px 60px 14px;
+  }
+
+  .section-title {
+    color: #aad4ff;
+    margin: 2rem 0 1.2rem 0;
+    font-weight: bold;
+    font-size: 2.2rem;
     text-align: center;
-    color: #002580;
-    font-size: 1.9em;
-    margin-bottom: 30px;
-    font-weight: 700;
   }
-  .apply-form label {
+
+  /* Talentos */
+  .talentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 3rem;
+  }
+  .card-talent {
+    background: #081a34ef;
+    border-radius: 14px;
+    padding: 18px 8px;
+    box-shadow: 0 4px 18px #00336680;
+    border: 2px solid #2277cc;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+  .card-talent:hover {
+    border-color: #aad4ff;
+    box-shadow: 0 8px 30px #152c4690;
+  }
+  .card-talent img {
+    width: 108px;
+    height: 108px;
+    border-radius: 14px;
+    border: 2.5px solid #aad4ff;
+    margin-bottom: 16px;
+    object-fit: cover;
+  }
+  .vtuber-nome-pill {
+    background: #aad4ff;
+    color: #152c46;
+    padding: 6px 18px;
+    border-radius: 24px;
+    font-weight: 700;
+    font-size: 1.07rem;
+    margin-top: 5px;
+  }
+
+  /* Modal talentos */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.63);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal.active {
+    display: flex;
+  }
+  .modal-content {
+    background: #02142e;
+    color: #c9e0fe;
+    padding: 2.3rem 2.4rem 2.2rem 2.4rem;
+    border-radius: 18px;
+    max-width: 400px;
+    min-width: 280px;
+    box-shadow: 0 10px 32px #07193caa;
+    text-align: center;
+    position: relative;
+  }
+  .modal-content h3 {
+    color: #aad4ff;
+    margin-bottom: 10px;
+  }
+  .modal-content p {
+    margin-bottom: 0.8rem;
+  }
+  .close-modal {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 1.7rem;
+    color: #aad4ff;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  /* Produtos */
+  .produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 1.4rem;
+  }
+  .card-produto {
+    background: #0c254d;
+    border-radius: 14px;
+    padding: 19px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 3px 16px #00336666;
+    border: 2px solid #3366cc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card-produto:hover {
+    border-color: #66aaff;
+    box-shadow: 0 8px 28px #3399ffbb;
+  }
+  .card-produto img {
+    width: 108px;
+    height: 108px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border: 2px solid #4488cc;
+    box-shadow: 0 2px 8px #002255cc;
+  }
+  .produto-nome {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #aad4ff;
+    margin-bottom: 8px;
+  }
+  .btn-adicionar {
+    background-color: #2277cc;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  .btn-adicionar:hover {
+    background-color: #0059b3;
+  }
+
+  /* Carrinho */
+  #carrinho-section {
+    background: #02142e;
+    padding: 16px 18px;
+    margin-top: 12px;
+    border-radius: 14px;
+    box-shadow: 0 2px 14px #003366cc;
+    color: #fff;
+  }
+  #carrinho-section h4 {
+    color: #aad4ff;
+    margin-top: 0;
+  }
+  #carrinho-lista {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  #carrinho-lista li {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .remove-produto {
+    color: #f44;
+    background: none;
+    border: none;
+    margin-left: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .carrinho-total {
+    font-weight: bold;
+  }
+
+  /* Ficha */
+  form#ficha-form {
+    max-width: 700px;
+    margin: auto;
+    background: #02142e;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px #004080cc;
+    color: #cbd7e6;
+  }
+  form#ficha-form label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #001a4d;
-    font-size: 1.1em;
   }
-  .apply-form input,
-  .apply-form textarea {
+  form#ficha-form input[type="text"],
+  form#ficha-form input[type="number"],
+  form#ficha-form input[type="url"],
+  form#ficha-form textarea {
     width: 100%;
-    padding: 12px 15px;
-    font-size: 1em;
-    border: 2px solid #0040cc;
-    border-radius: 10px;
-    outline: none;
-    transition: border-color 0.25s;
+    padding: 10px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid #4477bb;
+    background: #122a55;
+    color: #cbd7e6;
+    font-size: 1rem;
+    resize: vertical;
   }
-  .apply-form input:focus,
-  .apply-form textarea:focus {
-    border-color: #002580;
-  }
-  .apply-form button {
-    margin-top: 25px;
-    width: 100%;
-    background-color: #0040cc;
-    color: white;
+  form#ficha-form button {
+    background: #2277cc;
     border: none;
-    padding: 15px;
-    border-radius: 12px;
-    font-weight: 800;
-    font-size: 1.2em;
+    padding: 14px 20px;
+    font-weight: bold;
+    color: #e0eaf5;
     cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 28px;
+    font-size: 1.1rem;
+    width: 100%;
+    box-shadow: 0 4px 12px #004080cc;
+    transition: background 0.3s;
   }
-  .apply-form button:hover {
-    background-color: #001f66;
+  form#ficha-form button:hover {
+    background: #0059b3;
   }
-  @media (max-width: 850px) {
-    .profile.active {
+
+  /* Footer */
+  footer {
+    background: #000a1a;
+    padding: 40px 20px 18px 20px;
+    color: #aad4ff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 50px auto 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  .footer-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .footer-logo {
+    flex: 1 1 200px;
+    text-align: center;
+  }
+  .footer-logo h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2277cc;
+  }
+  .footer-contato {
+    flex: 1 1 200px;
+    text-align: center;
+  }
+  .footer-contato a {
+    background: #2277cc;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 3px 10px #003366aa;
+  }
+  .footer-social {
+    flex: 1 1 200px;
+    text-align: center;
+  }
+  .footer-social a {
+    margin: 0 9px;
+    font-size: 25px;
+    color: #aad4ff;
+    transition: 0.2s;
+  }
+  .footer-social a:hover {
+    color: #33bbff;
+  }
+  .footer-credit {
+    margin-top: 26px;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: #4c7ba5;
+  }
+  @media (max-width: 900px) {
+    .footer-container {
       flex-direction: column;
-      align-items: center;
     }
-    .profile .info {
-      max-width: 100%;
-    }
-    .characters {
-      gap: 15px;
-      padding: 20px 10px;
-    }
-    .card {
-      width: 45%;
-    }
-    .store .product {
-      width: 45%;
-      margin: 15px 2.5%;
-    }
-  }
-  @media (max-width: 420px) {
-    .card,
-    .store .product {
-      width: 95%;
-      margin: 15px auto;
+    footer {
+      padding-bottom: 14px;
     }
   }
 </style>
 </head>
+
 <body>
 <header>
-  <img src="logo.jpg" alt="Néoro Agência Logo" class="logo" />
-  Néoro Agência
+  <div class="logo">Néoro-agência</div>
+  <nav>
+    <a href="#talentos">TALENTO</a>
+    <a href="#empresa">EMPRESA</a>
+    <a href="#loja">LOJA</a>
+    <a href="#ficha">FICHA</a>
+  </nav>
+  <button class="loja-btn" onclick="location.href='#loja'">Loja</button>
 </header>
-<section class="characters">
-  <div class="card" onclick="showProfile(0)">
-    <img src="misterio1.jpg" alt="Oriel Estelar" />
-    <p>Oriel Estelar</p>
-  </div>
-  <div class="card" onclick="showProfile(1)">
-    <img src="misterio1.jpg" alt="Zezeguima" />
-    <p>Zezeguima</p>
-  </div>
-  <div class="card" onclick="showProfile(2)">
-    <img src="misterio1.jpg" alt="Puc Teimosia" />
-    <p>Puc Teimosia</p>
-  </div>
-  <div class="card" onclick="showProfile(3)">
-    <img src="misterio1.jpg" alt="Kaze Butterfly Sapphire Brown" />
-    <p>Kaze Butterfield Sapphire Brown</p>
-  </div>
-  <div class="card" onclick="showProfile(4)">
-    <img src="misterio1.jpg" alt="Kiyomi Suzuri" />
-    <p>Kiyomi Suzuri</p>
-  </div>
-  <div class="card" onclick="showProfile(5)">
-    <img src="misterio1.jpg" alt="Light" />
-    <p>Light</p>
-  </div>
-  <div class="card" onclick="showProfile(6)">
-    <img src="misterio1.jpg" alt="Aster" />
-    <p>Aster</p>
-  </div>
-</section>
-<section id="profiles">
-  <div class="profile" id="profile-0">
-    <img src="oriel3.png" alt="Oriel Estelar" class="small-photo" />
-    <div class="info">
-      <h3>Oriel Estelar</h3>
-      <p>
-        Idade: 17 anos
-        Espécie: Vampiro da Nova Era
-        Altura: 1,70m
-        Linhagem e Genética:
-        Pertence à antiga família Estelar (Star), uma das famílias mais velhas que seguem a cultura das estrelas.
-        Desde o nascimento, carrega uma marca no lado esquerdo do rosto, sinal presente em todas as suas vidas passadas.
-        Habilidades e Magia:
-        Dom: Comunicação com as estrelas – pode ouvir e dialogar com os astros.
-        Magia: Ren’ai Hoshikuzu (恋愛星屑) – “Poeira Estelar do Amor”.
-        Cria fragmentos cósmicos que curam emoções, fortalecem laços e protegem quem ama.
-        História / Lore:
-        Aos 12 anos, começou a roubar. Atua como mercador clandestino de relíquias mágicas roubadas, já que os vampiros não são bem aceitos nos dias atuais.
-        Tem fama dividida: para uns é ladrão, para outros um colecionador de tesouros esquecidos.
-        Personalidade:
-        Alegre e distraído. Gosta de chocolate 🍫. Adora brinquedos de cores chamativas, principalmente azul e roxo.
-        Alimentação:
-        Fonte: Sangue. Preferência: tipo O negativo (raro e considerado puro).
-      </p>
+
+<div id="stars-container"></div>
+
+<main>
+  <section class="section-title" id="empresa">Sobre a Néoro-agência</section>
+  <section class="text-section" style="text-align:center;margin-bottom:2.5rem;">
+    <p>A Néoro-agência nasceu em 2025 de uma amizade e sonho entre Michelle e Sparkle_atv. Fundada para apoiar VTubers iniciantes, a agência é espaço de acolhida, criatividade e recomeço. Nossa missão é impulsionar talentos, promover colaboração e criar conexões verdadeiras!</p>
+  </section>
+
+  <section class="section-title" id="talentos">Nossos Talentos</section>
+  <section class="talentos-grid" aria-label="Talentos da Néoro Agência">
+    <div class="card-talent" onclick="abrirModal(0)">
+      <img src="Oriel.webp" alt="Oriel Estelar" />
+      <div class="vtuber-nome-pill">Oriel Estelar</div>
+    </div>
+    <div class="card-talent" onclick="abrirModal(1)">
+      <img src="zezeguima.jpg" alt="Zezeguima" />
+      <div class="vtuber-nome-pill">Zezeguima</div>
+    </div>
+    <div class="card-talent" onclick="abrirModal(2)">
+      <img src="Puc.webp" alt="Puc Teimosia" />
+      <div class="vtuber-nome-pill">Puc Teimosia</div>
+    </div>
+    <div class="card-talent" onclick="abrirModal(3)">
+      <img src="Kaze.webp" alt="Kaze Butterfield Sapphire Brown" />
+      <div class="vtuber-nome-pill">Kaze Butterfield Sapphire Brown</div>
+    </div>
+    <div class="card-talent" onclick="abrirModal(4)">
+      <img src="kiyomi_suzuri.webp" alt="Kiyomi Suzuri" />
+      <div class="vtuber-nome-pill">Kiyomi Suzuri</div>
+    </div>
+    <div class="card-talent" onclick="abrirModal(5)">
+      <img src="light.jpg" alt="Light" />
+      <div class="vtuber-nome-pill">Light</div>
+    </div>
+    <div class="card-talent" onclick="abrirModal(6)">
+      <img src="aster.jpeg" alt="Aster" />
+      <div class="vtuber-nome-pill">Aster</div>
+    </div>
+  </section>
+  <div class="modal" id="talentoModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="fecharModal()"><i class="fas fa-times"></i></button>
+      <h3 id="modalNome"></h3>
+      <img id="modalImg" src="" alt="Imagem VTuber" style="width:90px;height:90px;object-fit:cover;border-radius:13px;border:2px solid #aad4ff;margin:10px auto;" />
+      <div id="modalDesc" style="text-align:left;line-height:1.4;"></div>
     </div>
   </div>
-  <div class="profile" id="profile-1">
-    <img src="zezeguima.png" alt="Zezeguima" class="small-photo" />
-    <div class="info">
-      <h3>Zezeguima</h3>
-      <p>
-        Idade: 24 anos
-        Espécie: Meio-elfo
-        Altura: 1,82m
-        Linhagem e Genética:
-        Filho de mãe élfica e pai humano, nunca foi plenamente aceito em nenhum dos dois povos.
-        Herdou a longevidade e afinidade mágica dos elfos, unidas à resistência e adaptabilidade humanas.
-        Carrega marcas rúnicas antigas no corpo e nas vestes, símbolos que brilham quando conjura feitiços.
-        Habilidades e Magia:
-        Dom: Manipulação Rúnica – canaliza poder através de runas em objetos, pergaminhos ou no ar.
-        Magia: Arcana e Proibida – invoca feitiços de proteção, destruição ou ilusão com seu grimório encantado, que flutua ao seu redor e responde apenas à sua voz.
-        História / Lore:
-        Desde jovem foi rejeitado, encontrando refúgio em livros esquecidos e bibliotecas abandonadas.
-        Aos 16 anos encontrou um tomo proibido que marcou suas mãos e alma com símbolos de poder ancestral.
-        Desde então, vaga como mago errante, oferecendo seus serviços em troca de moedas, favores ou conhecimento raro. Visto por alguns como bruxo perigoso, e por outros como última esperança diante do impossível.
-        Personalidade:
-        Enigmático e sarcástico, ri em momentos inesperados. Prefere livros às multidões, mas gosta de tavernas para observar e manipular pessoas. Possui curiosidade insaciável e não mede esforços para obter novos conhecimentos.
-        Alimentação:
-        Se alimenta de comida comum, mas tem o hábito peculiar de beber poções e elixires arcanos como se fossem água.
-      </p>
+
+  <section class="section-title" id="loja">Produtos Oficiais</section>
+  <section class="produtos-grid" id="produtos">
+    <div class="card-produto">
+      <img src="produto1.jpg" alt="Camiseta Néoro" />
+      <div class="produto-nome">Camiseta Exclusiva</div>
+      <button class="btn-adicionar" onclick="adicionarProduto('Camiseta Exclusiva')">Adicionar ao Carrinho</button>
     </div>
-  </div>
-  <div class="profile" id="profile-2">
-    <img src="puc-teimosia.png" alt="Puc Teimosia" class="small-photo" />
-    <div class="info">
-      <h3>Puc Teimosia</h3>
-      <p>
-        Idade: 37 anos
-        Espécie: Dragão do Céu da Lua Nova 🌙🐉
-        Altura: 1,97m
-        Linhagem e Genética:
-        Originário de um grande reino de dragões, descendente direto da linhagem do rei Oitom 🐉...
-        Habilidades e Magia:
-        Dom: Aprende apenas observando, manipula magias com facilidade, comunica-se com deuses e dragões...
-        Magia: Shotgun (🔥インパクトドラゴン🐲)...
-        História / Lore:
-        Cresceu na pobreza, sem família e sem alimento, sobrevivendo sozinho...
-        Personalidade:
-        ☀️ Gentil, carinhoso, calmo e amoroso. Gosta de ajudar os outros...
-        Gostos: Aprecia comida japonesa 🍣🍱.
-        Alimentação:
-        Se fortalece através de uma porção de determinação ❤️🌹.
-        Forma Final:
-        As Cinzas Negras de um Dragão Branco...
-      </p>
+    <div class="card-produto">
+      <img src="produto2.jpg" alt="Caneca Néoro" />
+      <div class="produto-nome">Caneca VTuber</div>
+      <button class="btn-adicionar" onclick="adicionarProduto('Caneca VTuber')">Adicionar ao Carrinho</button>
     </div>
-  </div>
-  <div class="profile" id="profile-3">
-    <img src="kaze-sapphire.png" alt="Kaze Butterfield Sapphire Brown" class="small-photo" />
-    <div class="info">
-      <h3>Kaze Butterfield Sapphire Brown</h3>
-      <p>
-        Idade: 18/19 anos
-        Raça: Híbrido entre Humano e Deus
-        Altura: 1,71m
-        Linhagem e Genética:
-        Filho de dois humanos, mas descendente de uma linhagem antiga em que sua mãe herdou o sangue de um Deus...
-        Habilidades e Magia:
-        Dom: Manipulação avançada de katana, mestre em técnicas...
-        Poderes: Controle do poder das estrelas...
-        História / Lore:
-        Sua história completa está sendo escrita em:
-        <a href="https://www.wattpad.com/story/xxxxxxx" target="_blank" rel="noopener noreferrer">Wattpad - História do Kaze</a>
-        Personalidade:
-        Kaze, devido a traumas, tende a se fechar...
-      </p>
+    <div class="card-produto">
+      <img src="produto3.jpg" alt="Adesivo Néoro" />
+      <div class="produto-nome">Adesivo Néoro Pack</div>
+      <button class="btn-adicionar" onclick="adicionarProduto('Adesivo Néoro Pack')">Adicionar ao Carrinho</button>
     </div>
-  </div>
-  <div class="profile" id="profile-4">
-    <img src="kiyomi-suzuri.png" alt="Kiyomi Suzuri" class="small-photo" />
-    <div class="info">
-      <h3>Kiyomi Suzuri</h3>
-      <p>
-        Bruxa da Lua
-        Idade: 500 mil anos
-        Espécie: Bruxa da Lua (meio demônio e meio anjo)
-        Altura: 1,85m
-        Linhagem e Genética:
-        Filha de uma Deusa da Lua e de um bruxo meio demônio...
-        Habilidades e Magia:
-        Dom: Através da lua em sua testa...
-        Magia: Detém poderes demoníacos que lhe concedem imortalidade...
-        História / Lore:
-        Um anjo não pode amar outras espécies...
-        Personalidade:
-        Alegre e radiante...
-        Gostos e Preferências:
-        Adora cantar e pintar...
-        Alimentação:
-        Se alimenta das almas das pessoas...
-      </p>
-    </div>
-  </div>
-  <div class="profile" id="profile-5">
-    <img src="light.png" alt="Light" class="small-photo" />
-    <div class="info">
-      <h3>Light</h3>
-      <p>
-        Idade: 19 anos
-        Raça: Humano / Oni
-        Altura: 1,89m
-        Linhagem e Genética:
-        Pertence à antiga família MorningStar...
-        Habilidades e Magia:
-        Dom: Muito habilidoso em luta corpo a corpo...
-        Magia: Chama Infernal...
-        História / Lore:
-        Aos 11 anos perdeu sua família...
-        Personalidade:
-        Alegre e engraçado...
-      </p>
-    </div>
-  </div>
-  <div class="profile" id="profile-6">
-    <img src="aster.png" alt="Aster" class="small-photo" />
-    <div class="info">
-      <h3>Aster</h3>
-      <p>
-        Fundação C.P.C.S
-        Idade: 24 anos
-        Espécie: Elfo
-        Altura (Lore): 1,80m
-        Dom:
-        Maestria absoluta na escrita e em combate corpo a corpo...
-        Hobby:
-        Obcecado por documentos e por detalhes minuciosos...
-        Personalidade:
-        Divertido, espirituoso e explosivamente sincero...
-        Origem:
-        Personagem do canal @mundo_de_aster
-        Afiliação: Fundação C.P.C.S
-      </p>
-    </div>
-  </div>
-</section>
-<section class="store">
-  <h2>Loja</h2>
-  <div class="product" data-name="Adesivo" data-price="5">
-    <img src="adesivo.jpg" alt="Adesivo" />
-    <p>Adesivo - R$5</p>
-    <button class="cart-btn" onclick="addToCart('Adesivo', 5)">Adicionar</button>
-  </div>
-  <div class="product" data-name="Poster" data-price="20">
-    <img src="poster.jpg" alt="Poster" />
-    <p>Poster - R$20</p>
-    <button class="cart-btn" onclick="addToCart('Poster', 20)">Adicionar</button>
-  </div>
-  <div class="product" data-name="Pulseira" data-price="10">
-    <img src="pulseira.jpg" alt="Pulseira" />
-    <p>Pulseira - R$10</p>
-    <button class="cart-btn" onclick="addToCart('Pulseira', 10)">Adicionar</button>
-  </div>
-  <div class="cart-summary">
-    <p><strong>Carrinho:</strong> <span id="cartContents">Nenhum item</span></p>
-    <button class="cart-btn" onclick="goToWhatsApp()">Enviar para WhatsApp</button>
-  </div>
-</section>
-<section class="apply-form">
-  <h2>Envie sua ficha para tentar entrar na agência</h2>
-  <form id="applicationForm" onsubmit="return false;">
-    <label for="name">Nome completo:</label>
-    <input type="text" id="name" required />
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" required />
-    <label for="discord">Discord:</label>
-    <input type="text" id="discord" />
-    <label for="details">Conte um pouco sobre você:</label>
-    <textarea id="details" rows="5" required></textarea>
-    <button type="button" onclick="enviarFichaWhatsApp()">Enviar ficha no WhatsApp</button>
+  </section>
+  <section id="carrinho-section">
+    <h4>Meu Carrinho</h4>
+    <ul id="carrinho-lista"></ul>
+    <div class="carrinho-total"></div>
+    <button id="finalizar-pedido" style="margin-top:15px; background:#0796ea; color:white; border:none; border-radius:25px; padding:10px 32px; font-weight:700; font-size:1.1rem; cursor:pointer;">Enviar pedido pelo WhatsApp</button>
+  </section>
+
+  <section class="section-title" id="ficha">Inscreva-se como Talento</section>
+  <form id="ficha-form" onsubmit="event.preventDefault(); alert('Inscrição enviada! Entraremos em contato em breve.'); this.reset();">
+    <label for="nome">Nome Completo</label>
+    <input type="text" id="nome" name="nome" required />
+
+    <label for="idade">Idade</label>
+    <input type="number" id="idade" name="idade" min="18" required />
+
+    <label for="experiencia">Experiência com VTubers ou Streaming</label>
+    <textarea id="experiencia" name="experiencia" rows="3" required></textarea>
+
+    <label for="motivacao">Por que deseja entrar na Néoro-agência?</label>
+    <textarea id="motivacao" name="motivacao" rows="3" required></textarea>
+
+    <label for="links">Links de Redes Sociais ou Vídeos de Audição</label>
+    <input type="url" id="links" name="links" placeholder="https://..." />
+
+    <button type="submit">Enviar Inscrição</button>
   </form>
-</section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+      <h2>Néoro-agência</h2>
+    </div>
+    <div class="footer-contato">
+      <p>Quer trabalhar conosco?</p>
+      <a href="mailto:contato@neoro-agencia.com">Entre em contato</a>
+    </div>
+    <div class="footer-social">
+      <p style="font-weight:bold; margin-bottom:8px;">Siga a Néoro</p>
+      <a href="https://www.instagram.com/neoro_agencia" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@neoro_agencia" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://youtube.com/@neoro-agenciadevtubersiniciant" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="footer-credit">© 2025 Néoro-agência VTubers. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
 <script>
-  function showProfile(index) {
-    var profiles = document.querySelectorAll('.profile');
-    profiles.forEach(function(profile) {
-      profile.classList.remove('active');
-    });
-    if (profiles[index]) {
-      profiles[index].classList.add('active');
-      profiles[index].scrollIntoView({behavior: 'smooth', block: 'center'});
+  // Estrelas caindo
+  function criarEstrela() {
+    const estrela = document.createElement('div');
+    estrela.className = 'star';
+    estrela.style.setProperty('--x', Math.random());
+    estrela.style.left = Math.random() * window.innerWidth + 'px';
+    const size = 1 + Math.random() * 2;
+    estrela.style.width = size + 'px';
+    estrela.style.height = size + 'px';
+    estrela.style.animationDuration = (1 + Math.random() * 3) + 's';
+    document.body.appendChild(estrela);
+    setTimeout(() => estrela.remove(), parseFloat(estrela.style.animationDuration) * 1000);
+  }
+  setInterval(criarEstrela, 90);
+
+  // Talentos e modal
+  const talentos = [
+    {
+      nome: "Oriel Estelar",
+      img: "Oriel.webp",
+      desc: `<strong>Idade:</strong> 17 anos<br>
+             <strong>Espécie:</strong> Vampiro da Nova Era<br>
+             <strong>Altura:</strong> 1,70m<br>
+             <strong>Linhagem:</strong> Pertence à família Estelar, marcada desde o nascimento.<br>
+             <strong>Habilidades:</strong> Comunicação com as estrelas.<br>
+             <strong>Magia:</strong> Ren’ai Hoshikuzu (“Poeira Estelar do Amor”)<br>
+             <strong>Lore:</strong> Mercador clandestino de relíquias mágicas; fama dividida entre ladrão e colecionador.<br>
+             <strong>Personalidade:</strong> Alegre, distraído; ama chocolate e brinquedos azul/roxo.<br>
+             <strong>Alimentação:</strong> Sangue tipo O negativo.`},
+    {
+      nome: "Zezeguima",
+      img: "zezeguima.jpg",
+      desc: `<strong>Idade:</strong> 24 anos<br>
+             <strong>Espécie:</strong> Meio-elfo<br>
+             <strong>Altura:</strong> 1,82m<br>
+             <strong>Linhagem:</strong> Marcas rúnicas de mãe élfica/pai humano.<br>
+             <strong>Habilidades:</strong> Manipulação rúnica.<br>
+             <strong>Magia:</strong> Arcana e proibida, grimório flutuante.<br>
+             <strong>Lore:</strong> Rejeitado, virou mago errante.<br>
+             <strong>Personalidade:</strong> Sarcástico, enigmático, observador.<br>
+             <strong>Alimentação:</strong> Comida comum e poções arcanas.`},
+    {
+      nome: "Puc Teimosia",
+      img: "Puc.webp",
+      desc: `<strong>Idade:</strong> 37 anos<br>
+             <strong>Espécie:</strong> Dragão da Lua Nova<br>
+             <strong>Altura:</strong> 1,97m<br>
+             <strong>Linhagem:</strong> Descendente do rei Oitom.<br>
+             <strong>Habilidades:</strong> Aprende observando, comunica com deuses/dragões.<br>
+             <strong>Magia:</strong> Shotgun (Impacto Dragão).<br>
+             <strong>Lore:</strong> Cresceu sozinho na pobreza.<br>
+             <strong>Personalidade:</strong> Gentil e calmo.<br>
+             <strong>Gostos:</strong> Comida japonesa.<br>
+             <strong>Alimentação:</strong> Determinação.`},
+    {
+      nome: "Kaze Butterfield Sapphire Brown",
+      img: "Kaze.webp",
+      desc: `<strong>Idade:</strong> 18/19 anos<br>
+             <strong>Raça:</strong> Humano/Deus<br>
+             <strong>Altura:</strong> 1,71m<br>
+             <strong>Linhagem:</strong> Herda sangue de deus pela mãe.<br>
+             <strong>Dom:</strong> Mestre de katana.<br>
+             <strong>Poder:</strong> Controle do poder das estrelas.<br>
+             <strong>Lore:</strong> História sendo escrita em Wattpad.<br>
+             <strong>Personalidade:</strong> Reservado devido a traumas.<br>
+             <a href="https://www.wattpad.com/story/xxxxxxx" target="_blank" style="color:#aad4ff;">Leia o Lore completo</a>`},
+    {
+      nome: "Kiyomi Suzuri",
+      img: "kiyomi_suzuri.webp",
+      desc: `<strong>Idade:</strong> 500 mil anos<br>
+             <strong>Espécie:</strong> Bruxa da Lua<br>
+             <strong>Altura:</strong> 1,85m<br>
+             <strong>Linhagem:</strong> Filha de deusa da lua e bruxo meio demônio.<br>
+             <strong>Dom:</strong> Magia da lua na testa.<br>
+             <strong>Magia:</strong> Demoníaca, imortalidade.<br>
+             <strong>Lore:</strong> Anjo proibido de amar outras espécies.<br>
+             <strong>Personalidade:</strong> Alegre e radiante.<br>
+             <strong>Gostos:</strong> Cantar e pintar.<br>
+             <strong>Alimentação:</strong> Almas humanas.`},
+    {
+      nome: "Light",
+      img: "light.jpg",
+      desc: `<strong>Idade:</strong> 19 anos<br>
+             <strong>Raça:</strong> Humano/Oni<br>
+             <strong>Altura:</strong> 1,89m<br>
+             <strong>Linhagem:</strong> Família MorningStar.<br>
+             <strong>Dom:</strong> Mestre em luta corporal.<br>
+             <strong>Magia:</strong> Chama Infernal.<br>
+             <strong>Lore:</strong> Perdeu a família aos 11 anos.<br>
+             <strong>Personalidade:</strong> Alegre e engraçado.`},
+    {
+      nome: "Aster",
+      img: "aster.jpeg",
+      desc: `<strong>Idade:</strong> 24 anos<br>
+             <strong>Espécie:</strong> Elfo<br>
+             <strong>Altura:</strong> 1,80m<br>
+             <strong>Dom:</strong> Maestria em escrita e combate.<br>
+             <strong>Hobby:</strong> Obsessivo por documentos.<br>
+             <strong>Personalidade:</strong> Sincero e espirituoso.<br>
+             <strong>Origem:</strong> Personagem do @mundo_de_aster.<br>
+             <strong>Afiliação:</strong> Fundação C.P.C.S`},
+  ];
+
+  function abrirModal(i) {
+    const modal = document.getElementById('talentoModal');
+    document.getElementById('modalNome').innerText = talentos[i].nome;
+    document.getElementById('modalImg').src = talentos[i].img;
+    document.getElementById('modalDesc').innerHTML = talentos[i].desc;
+    modal.classList.add('active');
+  }
+
+  function fecharModal() {
+    document.getElementById('talentoModal').classList.remove('active');
+  }
+  document.addEventListener('keydown', (e) => {if (e.key === 'Escape') fecharModal();});
+
+  // Carrinho
+  let carrinho = {};
+  function adicionarProduto(nome) {
+    carrinho[nome] = (carrinho[nome] || 0) + 1;
+    atualizarCarrinho();
+  }
+
+  function removerProduto(nome) {
+    if (carrinho[nome]) {
+      carrinho[nome]--;
+      if (carrinho[nome] <= 0) delete carrinho[nome];
     }
+    atualizarCarrinho();
   }
-  const cart = [];
-  function addToCart(name, price) {
-    cart.push({name, price});
-    updateCartText();
-  }
-  function updateCartText() {
-    const cartContents = document.getElementById('cartContents');
-    if (cart.length === 0) {
-      cartContents.textContent = 'Nenhum item';
-    } else {
-      const items = cart.map(item => item.name).join(', ');
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      cartContents.textContent = `${items} - R$${total}`;
+
+  function atualizarCarrinho() {
+    const ul = document.getElementById('carrinho-lista');
+    const totalDiv = document.querySelector('.carrinho-total');
+    ul.innerHTML = '';
+    let total = 0;
+    for (let prod in carrinho) {
+      let q = carrinho[prod];
+      const preco = 29.9; 
+      total += preco * q;
+      const li = document.createElement('li');
+      li.textContent = `${prod} (x${q})`;
+      const btn = document.createElement('button');
+      btn.className = 'remove-produto';
+      btn.textContent = '✖';
+      btn.onclick = () => removerProduto(prod);
+      li.appendChild(btn);
+      ul.appendChild(li);
     }
+    totalDiv.textContent = 'Total: R$ ' + total.toFixed(2).replace('.', ',');
   }
-  function goToWhatsApp() {
-    if (cart.length === 0) {
-      alert('Seu carrinho está vazio.');
+
+  document.getElementById('finalizar-pedido').onclick = () => {
+    if (Object.keys(carrinho).length === 0) {
+      alert('Seu carrinho está vazio!');
       return;
     }
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-    const itemsDesc = cart.map(item => `${item.name} (R$${item.price})`).join(', ');
-    const message = `Olá! Gostaria de comprar: ${itemsDesc}. Total: R$${total}.`;
-    const url = `https://wa.me/554396637473?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  }
-  function enviarFichaWhatsApp() {
-    const nome = encodeURIComponent(document.getElementById('name').value.trim());
-    const email = encodeURIComponent(document.getElementById('email').value.trim());
-    const discord = encodeURIComponent(document.getElementById('discord').value.trim());
-    const detalhes = encodeURIComponent(document.getElementById('details').value.trim());
-    const numeroWhatsApp = '554396637473';
-
-    if (!nome || !email || !detalhes) {
-      alert('Por favor, preencha os campos obrigatórios.');
-      return;
+    let mensagem = 'Olá! Gostaria de fazer meu pedido na Néoro-agência:%0A';
+    for (let prod in carrinho) {
+      mensagem += `- ${prod} (x${carrinho[prod]})%0A`;
     }
+    window.open(`https://wa.me/554396637473?text=${mensagem}`, '_blank');
+  };
 
-    const mensagem = `Olá,%0aGostaria de enviar minha ficha para a Néoro Agência:%0a%0a*Nome:* ${nome}%0a*E-mail:* ${email}%0a*Discord:* ${discord}%0a*Detalhes:* ${detalhes}`;
-    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-    window.open(url, '_blank');
+  // Estrelas
+  function criarEstrela() {
+    const estrela = document.createElement('div');
+    estrela.className = 'star';
+    estrela.style.setProperty('--x', Math.random());
+    estrela.style.left = Math.random() * window.innerWidth + 'px';
+    const size = 1 + Math.random() * 2;
+    estrela.style.width = size + 'px';
+    estrela.style.height = size + 'px';
+    estrela.style.animationDuration = (1 + Math.random() * 3) + 's';
+    document.body.appendChild(estrela);
+    setTimeout(() => estrela.remove(), parseFloat(estrela.style.animationDuration) * 1000);
   }
+  setInterval(criarEstrela, 90);
 </script>
+
 </body>
 </html>
