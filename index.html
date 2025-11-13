@@ -45,10 +45,32 @@
     box-shadow: 0 2px 7px #003366cc;
   }
   header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: default;
+  }
+ header {
+  height: 80px; /* aumenta a altura do header para comportar a logo maior */
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+header .logo img {
+  height: auto;
+  max-height: 70px; /* altura maior que o padrão */
+  max-width: 280px;  /* seu limite máximo */
+  width: auto;
+  min-width: 140px;
+  border-radius: 6px;
+  object-fit: contain;
+  display: block;
+}
+
+  header .logo span {
     font-size: 1.6rem;
     font-weight: bold;
     color: #aad4ff;
-    cursor: default;
   }
   nav {
     display: flex;
@@ -391,7 +413,10 @@
 
 <body>
 <header>
-  <div class="logo">Néoro-agência</div>
+  <div class="logo">
+    <img src="1000103990.png" alt="Logo Néoro-agência" />
+    <span>Néoro-agência</span>
+  </div>
   <nav>
     <a href="#talentos">TALENTO</a>
     <a href="#empresa">EMPRESA</a>
@@ -536,86 +561,85 @@
       nome: "Oriel Estelar",
       img: "Oriel.webp",
       desc: `<strong>Idade:</strong> 17 anos<br>
-             <strong>Espécie:</strong> Vampiro da Nova Era<br>
-             <strong>Altura:</strong> 1,70m<br>
-             <strong>Linhagem:</strong> Pertence à família Estelar, marcada desde o nascimento.<br>
-             <strong>Habilidades:</strong> Comunicação com as estrelas.<br>
-             <strong>Magia:</strong> Ren’ai Hoshikuzu (“Poeira Estelar do Amor”)<br>
-             <strong>Lore:</strong> Mercador clandestino de relíquias mágicas; fama dividida entre ladrão e colecionador.<br>
-             <strong>Personalidade:</strong> Alegre, distraído; ama chocolate e brinquedos azul/roxo.<br>
-             <strong>Alimentação:</strong> Sangue tipo O negativo.`},
+            <strong>Espécie:</strong> Vampiro da Nova Era<br>
+            <strong>Altura:</strong> 1,70m<br>
+            <strong>Linhagem:</strong> Pertence à família Estelar, marcada desde o nascimento.<br>
+            <strong>Habilidades:</strong> Comunicação com as estrelas.<br>
+            <strong>Magia:</strong> Ren’ai Hoshikuzu (“Poeira Estelar do Amor”)<br>
+            <strong>Lore:</strong> Mercador clandestino de relíquias mágicas; fama dividida entre ladrão e colecionador.<br>
+            <strong>Personalidade:</strong> Alegre, distraído; ama chocolate e brinquedos azul/roxo.<br>
+            <strong>Alimentação:</strong> Sangue tipo O negativo.`},
     {
       nome: "Zezeguima",
       img: "zezeguima.jpg",
       desc: `<strong>Idade:</strong> 24 anos<br>
-             <strong>Espécie:</strong> Meio-elfo<br>
-             <strong>Altura:</strong> 1,82m<br>
-             <strong>Linhagem:</strong> Marcas rúnicas de mãe élfica/pai humano.<br>
-             <strong>Habilidades:</strong> Manipulação rúnica.<br>
-             <strong>Magia:</strong> Arcana e proibida, grimório flutuante.<br>
-             <strong>Lore:</strong> Rejeitado, virou mago errante.<br>
-             <strong>Personalidade:</strong> Sarcástico, enigmático, observador.<br>
-             <strong>Alimentação:</strong> Comida comum e poções arcanas.`},
+            <strong>Espécie:</strong> Meio-elfo<br>
+            <strong>Altura:</strong> 1,82m<br>
+            <strong>Linhagem:</strong> Marcas rúnicas de mãe élfica/pai humano.<br>
+            <strong>Habilidades:</strong> Manipulação rúnica.<br>
+            <strong>Magia:</strong> Arcana e proibida, grimório flutuante.<br>
+            <strong>Lore:</strong> Rejeitado, virou mago errante.<br>
+            <strong>Personalidade:</strong> Sarcástico, enigmático, observador.<br>
+            <strong>Alimentação:</strong> Comida comum e poções arcanas.`},
     {
       nome: "Puc Teimosia",
       img: "Puc.webp",
       desc: `<strong>Idade:</strong> 37 anos<br>
-             <strong>Espécie:</strong> Dragão da Lua Nova<br>
-             <strong>Altura:</strong> 1,97m<br>
-             <strong>Linhagem:</strong> Descendente do rei Oitom.<br>
-             <strong>Habilidades:</strong> Aprende observando, comunica com deuses/dragões.<br>
-             <strong>Magia:</strong> Shotgun (Impacto Dragão).<br>
-             <strong>Lore:</strong> Cresceu sozinho na pobreza.<br>
-             <strong>Personalidade:</strong> Gentil e calmo.<br>
-             <strong>Gostos:</strong> Comida japonesa.<br>
-             <strong>Alimentação:</strong> Determinação.`},
+            <strong>Espécie:</strong> Dragão da Lua Nova<br>
+            <strong>Altura:</strong> 1,97m<br>
+            <strong>Linhagem:</strong> Descendente do rei Oitom.<br>
+            <strong>Habilidades:</strong> Aprende observando, comunica com deuses/dragões.<br>
+            <strong>Magia:</strong> Shotgun (Impacto Dragão).<br>
+            <strong>Lore:</strong> Cresceu sozinho na pobreza.<br>
+            <strong>Personalidade:</strong> Gentil e calmo.<br>
+            <strong>Gostos:</strong> Comida japonesa.<br>
+            <strong>Alimentação:</strong> Determinação.`},
     {
       nome: "Kaze Butterfield Sapphire Brown",
       img: "Kaze.webp",
       desc: `<strong>Idade:</strong> 18/19 anos<br>
-             <strong>Raça:</strong> Humano/Deus<br>
-             <strong>Altura:</strong> 1,71m<br>
-             <strong>Linhagem:</strong> Herda sangue de deus pela mãe.<br>
-             <strong>Dom:</strong> Mestre de katana.<br>
-             <strong>Poder:</strong> Controle do poder das estrelas.<br>
-             <strong>Lore:</strong> História sendo escrita em Wattpad.<br>
-             <strong>Personalidade:</strong> Reservado devido a traumas.<br>
-             <a href="https://www.wattpad.com/story/xxxxxxx" target="_blank" style="color:#aad4ff;">Leia o Lore completo</a>`},
+            <strong>Raça:</strong> Humano/Deus<br>
+            <strong>Altura:</strong> 1,71m<br>
+            <strong>Linhagem:</strong> Herda sangue de deus pela mãe.<br>
+            <strong>Dom:</strong> Mestre de katana.<br>
+            <strong>Poder:</strong> Controle do poder das estrelas.<br>
+            <strong>Lore:</strong> História sendo escrita em Wattpad.<br>
+            <strong>Personalidade:</strong> Reservado devido a traumas.<br>
+            <a href="https://www.wattpad.com/story/xxxxxxx" target="_blank" style="color:#aad4ff;">Leia o Lore completo</a>`},
     {
       nome: "Kiyomi Suzuri",
       img: "kiyomi_suzuri.webp",
       desc: `<strong>Idade:</strong> 500 mil anos<br>
-             <strong>Espécie:</strong> Bruxa da Lua<br>
-             <strong>Altura:</strong> 1,85m<br>
-             <strong>Linhagem:</strong> Filha de deusa da lua e bruxo meio demônio.<br>
-             <strong>Dom:</strong> Magia da lua na testa.<br>
-             <strong>Magia:</strong> Demoníaca, imortalidade.<br>
-             <strong>Lore:</strong> Anjo proibido de amar outras espécies.<br>
-             <strong>Personalidade:</strong> Alegre e radiante.<br>
-             <strong>Gostos:</strong> Cantar e pintar.<br>
-             <strong>Alimentação:</strong> Almas humanas.`},
+            <strong>Espécie:</strong> Bruxa da Lua<br>
+            <strong>Altura:</strong> 1,85m<br>
+            <strong>Linhagem:</strong> Filha de deusa da lua e bruxo meio demônio.<br>
+            <strong>Dom:</strong> Magia da lua na testa.<br>
+            <strong>Magia:</strong> Demoníaca, imortalidade.<br>
+            <strong>Lore:</strong> Anjo proibido de amar outras espécies.<br>
+            <strong>Personalidade:</strong> Alegre e radiante.<br>
+            <strong>Gostos:</strong> Cantar e pintar.<br>
+            <strong>Alimentação:</strong> Almas humanas.`},
     {
       nome: "Light",
       img: "light.jpg",
       desc: `<strong>Idade:</strong> 19 anos<br>
-             <strong>Raça:</strong> Humano/Oni<br>
-             <strong>Altura:</strong> 1,89m<br>
-             <strong>Linhagem:</strong> Família MorningStar.<br>
-             <strong>Dom:</strong> Mestre em luta corporal.<br>
-             <strong>Magia:</strong> Chama Infernal.<br>
-             <strong>Lore:</strong> Perdeu a família aos 11 anos.<br>
-             <strong>Personalidade:</strong> Alegre e engraçado.`},
+            <strong>Raça:</strong> Humano/Oni<br>
+            <strong>Altura:</strong> 1,89m<br>
+            <strong>Linhagem:</strong> Família MorningStar.<br>
+            <strong>Dom:</strong> Mestre em luta corporal.<br>
+            <strong>Magia:</strong> Chama Infernal.<br>
+            <strong>Lore:</strong> Perdeu a família aos 11 anos.<br>
+            <strong>Personalidade:</strong> Alegre e engraçado.`},
     {
       nome: "Aster",
       img: "aster.jpeg",
       desc: `<strong>Idade:</strong> 24 anos<br>
-             <strong>Espécie:</strong> Elfo<br>
-             <strong>Altura:</strong> 1,80m<br>
-             <strong>Dom:</strong> Maestria em escrita e combate.<br>
-             <strong>Hobby:</strong> Obsessivo por documentos.<br>
-             <strong>Personalidade:</strong> Sincero e espirituoso.<br>
-             <strong>Origem:</strong> Personagem do @mundo_de_aster.<br>
-             <strong>Afiliação:</strong> Fundação C.P.C.S`},
+            <strong>Espécie:</strong> Elfo<br>
+            <strong>Dom:</strong> Maestria em escrita e combate.<br>
+            <strong>Hobby:</strong> Obsessivo por documentos.<br>
+            <strong>Personalidade:</strong> Sincero e espirituoso.<br>
+            <strong>Origem:</strong> Personagem do @mundo_de_aster.<br>
+            <strong>Afiliação:</strong> Fundação C.P.C.S`},
   ];
 
   function abrirModal(i) {
@@ -653,7 +677,7 @@
     let total = 0;
     for (let prod in carrinho) {
       let q = carrinho[prod];
-      const preco = 29.9; 
+      const preco = 29.9;
       total += preco * q;
       const li = document.createElement('li');
       li.textContent = `${prod} (x${q})`;
@@ -678,22 +702,6 @@
     }
     window.open(`https://wa.me/554396637473?text=${mensagem}`, '_blank');
   };
-
-  // Estrelas
-  function criarEstrela() {
-    const estrela = document.createElement('div');
-    estrela.className = 'star';
-    estrela.style.setProperty('--x', Math.random());
-    estrela.style.left = Math.random() * window.innerWidth + 'px';
-    const size = 1 + Math.random() * 2;
-    estrela.style.width = size + 'px';
-    estrela.style.height = size + 'px';
-    estrela.style.animationDuration = (1 + Math.random() * 3) + 's';
-    document.body.appendChild(estrela);
-    setTimeout(() => estrela.remove(), parseFloat(estrela.style.animationDuration) * 1000);
-  }
-  setInterval(criarEstrela, 90);
 </script>
-
 </body>
 </html>
